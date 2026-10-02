@@ -1,0 +1,3135 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contrato de clientes | Dinah Gómez</title>
+    <style>
+      :root {
+        --azul: #20357e;
+        --tinta: #17304c;
+        --fondo: #eef3f9;
+        --borde: #cbd6e5;
+        --verde: #157448;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--fondo);
+        color: var(--tinta);
+        font:
+          15px/1.55 Arial,
+          sans-serif;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+      button {
+        border: 0;
+        border-radius: 9px;
+        background: var(--azul);
+        color: white;
+        padding: 11px 17px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button:hover {
+        background: #304b9d;
+      }
+      button:disabled {
+        opacity: 0.48;
+        cursor: not-allowed;
+      }
+      button.secundario {
+        background: #e9eff9;
+        color: var(--azul);
+      }
+      button.verde {
+        background: var(--verde);
+      }
+      a {
+        color: var(--azul);
+      }
+      header {
+        background: linear-gradient(110deg, #152651, #235baa);
+        color: #fff;
+        padding: 18px max(20px, calc((100vw - 1480px) / 2));
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .marca {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .monograma {
+        font-size: 32px;
+        font-weight: bold;
+        border: 1px solid #b3d9fa;
+        border-radius: 12px;
+        padding: 0 11px;
+      }
+      .marca strong {
+        display: block;
+        font-size: 19px;
+      }
+      .marca small {
+        display: block;
+        color: #dbe8fa;
+      }
+      header button {
+        background: #ffffff18;
+        border: 1px solid #ffffff66;
+        font-size: 13px;
+      }
+      main {
+        max-width: 1520px;
+        margin: 22px auto;
+        padding: 0 20px;
+      }
+      .columnas {
+        display: grid;
+        grid-template-columns: minmax(330px, 430px) minmax(0, 1fr);
+        gap: 22px;
+        align-items: start;
+      }
+      .tarjeta {
+        background: white;
+        border-radius: 15px;
+        padding: 24px;
+        box-shadow: 0 4px 22px #17304c09;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 10px;
+      }
+      h2 {
+        font-size: 19px;
+        margin: 20px 0 10px;
+      }
+      h3 {
+        font-size: 16px;
+        margin: 15px 0 8px;
+      }
+      p {
+        margin: 9px 0 14px;
+      }
+      .nota {
+        color: #58708b;
+        font-size: 13px;
+      }
+      .etiqueta {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 6px;
+        background: #e8effb;
+        color: var(--azul);
+        font-size: 12px;
+        font-weight: bold;
+      }
+      label {
+        display: block;
+        font-size: 13px;
+        margin: 12px 0 5px;
+      }
+      input,
+      select {
+        width: 100%;
+        min-height: 42px;
+        border: 1px solid #9dafcc;
+        border-radius: 6px;
+        padding: 9px;
+        color: var(--tinta);
+        background: white;
+      }
+      input:focus {
+        outline: 2px solid #77a9e8;
+        outline-offset: 1px;
+      }
+      .dos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      input[type="file"] {
+        font-size: 12px;
+        padding: 7px;
+      }
+      input[type="checkbox"] {
+        width: 18px;
+        min-height: 18px;
+        flex-shrink: 0;
+      }
+      .aceptacion {
+        display: flex;
+        gap: 9px;
+        align-items: flex-start;
+        font-size: 13px;
+        margin: 17px 0;
+      }
+      .aceptacion input {
+        margin-top: 4px;
+      }
+      .acciones {
+        display: flex;
+        gap: 9px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      .acciones button {
+        font-size: 13px;
+      }
+      .firma {
+        width: 100%;
+        height: 165px;
+        border: 2px solid #879ec2;
+        border-radius: 8px;
+        background: #fff;
+        touch-action: none;
+        display: block;
+      }
+      .firma-label {
+        margin-bottom: 8px;
+      }
+      .estado {
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 14px;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+        white-space: pre-line;
+      }
+      .estado:empty {
+        display: none;
+      }
+      .info {
+        background: #e8f1fc;
+        color: #154272;
+      }
+      .error {
+        background: #fff0ed;
+        color: #922a18;
+      }
+      .exito {
+        background: #e7f4ec;
+        color: #155b37;
+      }
+      .visor {
+        position: sticky;
+        top: 18px;
+      }
+      .barra {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+      }
+      .barra button {
+        font-size: 13px;
+      }
+      .contrato-texto {
+        height: calc(100vh - 230px);
+        min-height: 420px;
+        overflow: auto;
+        padding: 8px 15px 20px 5px;
+        scrollbar-color: #8d9bb0 #eef3f9;
+      }
+      .contrato-texto p {
+        font-size: 14px;
+        line-height: 1.65;
+        margin: 0 0 17px;
+        overflow-wrap: anywhere;
+      }
+      .contrato-texto h3 {
+        font-size: 15px;
+        color: var(--azul);
+        line-height: 1.5;
+        margin: 22px 0 14px;
+      }
+      .contrato-texto h2 {
+        font-size: 18px;
+        color: var(--azul);
+      }
+      iframe {
+        width: 100%;
+        height: calc(100vh - 230px);
+        min-height: 420px;
+        border: 1px solid var(--borde);
+        border-radius: 8px;
+      }
+      .previsualizacion img {
+        display: block;
+        max-width: 100%;
+        max-height: 160px;
+        object-fit: contain;
+        margin: 8px auto;
+        border-radius: 5px;
+      }
+      .previsualizacion a {
+        font-size: 12px;
+      }
+      details {
+        margin: 14px 0;
+        border: 1px solid var(--borde);
+        padding: 10px;
+        border-radius: 8px;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .datos-admin {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+      }
+      .datos-admin div {
+        padding: 7px;
+        border-bottom: 1px solid #e9eef5;
+        overflow-wrap: anywhere;
+      }
+      .datos-admin strong {
+        display: block;
+        font-size: 12px;
+        color: #58708b;
+      }
+      .hash {
+        font: 12px/1.5 monospace;
+        overflow-wrap: anywhere;
+      }
+      .aviso-lectura {
+        font-size: 12px;
+        padding: 10px;
+        background: #f1f5fb;
+        border-radius: 7px;
+      }
+      footer {
+        padding: 22px;
+        text-align: center;
+        color: #58708b;
+        font-size: 12px;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      @media (max-width: 850px) {
+        .columnas {
+          grid-template-columns: 1fr;
+        }
+        .visor {
+          position: static;
+          grid-row: 2;
+        }
+        main {
+          padding: 0 12px;
+          margin-top: 12px;
+        }
+        .tarjeta {
+          padding: 18px;
+        }
+        .contrato-texto,
+        iframe {
+          height: 560px;
+          min-height: 350px;
+        }
+        header {
+          padding: 16px;
+        }
+        .marca strong {
+          font-size: 16px;
+        }
+        .marca small {
+          font-size: 11px;
+        }
+      }
+      @media (max-width: 420px) {
+        .dos,
+        .datos-admin {
+          grid-template-columns: 1fr;
+        }
+        .barra button {
+          padding: 9px 11px;
+        }
+        .monograma {
+          font-size: 25px;
+        }
+        header {
+          gap: 8px;
+        }
+        header button {
+          padding: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="marca">
+        <span class="monograma" id="accesoPrivadoDG">DG</span>
+        <div>
+          <strong>Dinah Gómez</strong
+          ><small>Contrato para la adquisición de activos inmobiliarios</small>
+        </div>
+      </div>
+      <button id="abrirAdmin" type="button" hidden>Panel de Dinah</button
+      ><button id="volverCliente" type="button" hidden>
+        Contrato de cliente
+      </button>
+    </header>
+    <main id="portalCliente">
+      <div class="columnas">
+        <section class="tarjeta">
+          <span class="etiqueta">EXPEDIENTE DEL CLIENTE</span>
+          <h1>Datos para tu contrato</h1>
+          <p class="nota">
+            Completa los datos, adjunta tu INE y revisa el contrato antes de
+            firmar.
+          </p>
+          <form id="formulario" novalidate>
+            <h2>1. Adjunta tu INE</h2>
+            <p class="nota">
+              INE frente y reverso, legibles. JPG, PNG o PDF; máximo 8 MB por
+              archivo.
+            </p>
+            <label for="ineFrente">INE frente</label
+            ><input
+              id="ineFrente"
+              type="file"
+              required
+              accept="image/jpeg,image/png,application/pdf"
+            />
+            <div id="vistaFrente" class="previsualizacion"></div>
+            <label for="ineReverso">INE reverso</label
+            ><input
+              id="ineReverso"
+              type="file"
+              required
+              accept="image/jpeg,image/png,application/pdf"
+            />
+            <div id="vistaReverso" class="previsualizacion"></div>
+            <div class="acciones">
+              <button id="leerIne" type="button" class="secundario">
+                Leer datos de mi INE
+              </button>
+            </div>
+            <p class="nota">
+              Lectura opcional desde fotos JPG o PNG. Revisa lo detectado y
+              completa los datos restantes.
+            </p>
+            <div
+              id="estadoOcr"
+              class="estado"
+              role="status"
+              aria-live="polite"
+            ></div>
+            <h2>2. Revisa y completa tus datos</h2>
+
+            <label for="numero">Número de contrato</label
+            ><input
+              id="numero"
+              maxlength="70"
+              placeholder="Se asignará automáticamente si lo dejas vacío"
+            />
+            <label for="nombre">Nombre completo</label
+            ><input id="nombre" required maxlength="180" autocomplete="name" />
+            <div class="dos">
+              <div>
+                <label for="rfc">RFC</label
+                ><input
+                  id="rfc"
+                  required
+                  maxlength="13"
+                  minlength="13"
+                  pattern="[A-Za-zÑñ&]{4}[0-9]{6}[A-Za-z0-9]{3}"
+                />
+              </div>
+              <div>
+                <label for="curp">CURP</label
+                ><input
+                  id="curp"
+                  required
+                  minlength="18"
+                  maxlength="18"
+                  pattern="[A-Za-z0-9]{18}"
+                />
+              </div>
+            </div>
+            <label for="nacionalidad">Nacionalidad</label
+            ><input
+              id="nacionalidad"
+              required
+              maxlength="80"
+              value="Mexicana"
+            />
+            <label for="domicilio">Domicilio completo</label
+            ><input
+              id="domicilio"
+              required
+              maxlength="500"
+              autocomplete="street-address"
+              placeholder="Calle, número, colonia, municipio, estado y C. P."
+            />
+            <div class="dos">
+              <div>
+                <label for="telefono">Teléfono</label
+                ><input
+                  id="telefono"
+                  required
+                  type="tel"
+                  maxlength="25"
+                  pattern="[+0-9 ()-]{10,25}"
+                  autocomplete="tel"
+                />
+              </div>
+              <div>
+                <label for="correo">Correo electrónico</label
+                ><input
+                  id="correo"
+                  required
+                  type="email"
+                  maxlength="180"
+                  autocomplete="email"
+                />
+              </div>
+            </div>
+            <label for="identificacion"
+              >Identificación oficial (IDMEX y sus 10 dígitos)</label
+            ><input
+              id="identificacion"
+              required
+              maxlength="15"
+              pattern="[Ii][Dd][Mm][Ee][Xx][0-9]{10}"
+              placeholder="IDMEX0000000000"
+            />
+            <h2>Datos del activo</h2>
+            <label for="folio">Folio / clave del activo</label
+            ><input id="folio" required maxlength="100" />
+            <label for="direccionActivo">Dirección completa del activo</label
+            ><input id="direccionActivo" required maxlength="500" />
+            <div class="dos">
+              <div>
+                <label for="banco">Banco / administradora / titular</label
+                ><input id="banco" required maxlength="150" />
+              </div>
+              <div>
+                <label for="etapa">Situación jurídica / etapa del activo</label
+                ><input id="etapa" required maxlength="180" />
+              </div>
+            </div>
+            <label for="precio">Importe total pactado (MXN)</label
+            ><input
+              id="precio"
+              required
+              type="text"
+              inputmode="decimal"
+              maxlength="25"
+              placeholder="$2,850,000.00"
+              autocomplete="off"
+            />
+            <label for="precioLetra">Importe en letra (incluye centavos)</label
+            ><input
+              id="precioLetra"
+              required
+              maxlength="450"
+              placeholder="Se calcula al escribir el importe; puedes revisarlo"
+            />
+            <div class="acciones">
+              <button id="preparar" type="button">
+                Preparar contrato para revisión
+              </button>
+            </div>
+            <p class="nota">
+              Los datos y documentos se guardarán en Firebase cuando firmes.
+            </p>
+            <h2>Firma del CONTRATANTE</h2>
+            <p class="nota firma-label">
+              Firma igual que en tu INE, con el dedo o el mouse.
+            </p>
+            <canvas
+              class="firma"
+              id="firmaCliente"
+              width="1000"
+              height="330"
+              aria-label="Área para dibujar la firma del cliente"
+            ></canvas>
+            <div class="acciones">
+              <button type="button" class="secundario" id="borrarCliente">
+                Borrar firma
+              </button>
+            </div>
+            <label class="aceptacion"
+              ><input id="acepto" type="checkbox" required /><span
+                >He leído el contrato completo, confirmé mis datos y acepto su
+                contenido. Autorizo registrar mi ubicación al firmar y compartir
+                mi INE con LA PRESTADORA para este expediente.</span
+              ></label
+            >
+            <p id="avisoLectura" class="aviso-lectura">
+              Revisa el contrato completo y marca la casilla para confirmar tu
+              aceptación.
+            </p>
+            <p class="nota">
+              Al firmar, el navegador solicitará acceso a tu ubicación para
+              registrar la evidencia de firma.
+            </p>
+            <button id="firmarCliente" type="submit" class="verde">
+              Firmar y guardar contrato
+            </button>
+          </form>
+          <div
+            id="estadoCliente"
+            class="estado"
+            role="status"
+            aria-live="polite"
+          ></div>
+          <div class="acciones">
+            <button id="descargarCliente" hidden>
+              Descargar mi contrato firmado</button
+            ><button id="consultarFinal" hidden>Consultar firma de Dinah</button
+            ><button id="descargarFinalCliente" hidden>
+              Descargar contrato con ambas firmas</button
+            ><button id="reciboCliente" class="secundario" hidden>
+              Descargar evidencia
+            </button>
+          </div>
+          <div id="consultaAnterior" hidden>
+            <h3>Tu último expediente</h3>
+            <p id="ultimoId" class="nota"></p>
+            <button id="recuperarCliente">Recuperar mis contratos</button
+            ><button class="secundario" id="nuevoCliente">
+              Nuevo contrato
+            </button>
+          </div>
+        </section>
+        <section class="tarjeta visor">
+          <div class="barra">
+            <button id="verPdf">Ver PDF</button
+            ><button id="verTexto" class="secundario">Ver texto</button
+            ><button id="descargarRevision">
+              Descargar contrato para revisión
+            </button>
+          </div>
+          <div
+            id="textoContrato"
+            class="contrato-texto"
+            tabindex="0"
+            aria-label="Texto completo del contrato"
+          ></div>
+          <iframe id="pdfContrato" title="Contrato en PDF" hidden></iframe>
+          <p class="nota">
+            Puedes leer el contrato completo en «Ver texto» o revisarlo en PDF
+            antes de firmar.
+          </p>
+        </section>
+      </div>
+    </main>
+    <main id="portalAdmin" hidden>
+      <section
+        id="loginAdmin"
+        class="tarjeta"
+        style="max-width: 480px; margin: 35px auto"
+      >
+        <span class="etiqueta">ACCESO PRIVADO</span>
+        <h1>Panel de Dinah</h1>
+        <form id="formLogin">
+          <label for="emailAdmin">Correo electrónico</label
+          ><input
+            id="emailAdmin"
+            type="email"
+            required
+            autocomplete="username"
+            value="dinahgomez19@gmail.com"
+          /><label for="passwordAdmin">Contraseña</label
+          ><input
+            id="passwordAdmin"
+            type="password"
+            required
+            autocomplete="current-password"
+          />
+          <div class="acciones">
+            <button id="entrarAdmin" type="submit">Entrar</button>
+          </div>
+        </form>
+        <div id="estadoLogin" class="estado" role="status"></div>
+      </section>
+      <section id="contenidoAdmin" hidden>
+        <div class="tarjeta">
+          <span class="etiqueta">REVISIÓN Y FIRMA DE LA PRESTADORA</span>
+          <div class="acciones">
+            <button id="actualizarAdmin">Actualizar expedientes</button
+            ><button id="cerrarAdmin" class="secundario">Cerrar sesión</button>
+          </div>
+          <label for="listaExpedientes">Selecciona un expediente</label
+          ><select id="listaExpedientes">
+            <option value="">Selecciona un expediente</option>
+          </select>
+          <p id="resumenAdmin" class="nota"></p>
+        </div>
+        <div class="columnas" style="margin-top: 22px">
+          <section class="tarjeta">
+            <h2>Datos y documentos</h2>
+            <div id="datosAdmin" class="datos-admin"></div>
+            <div class="dos">
+              <div>
+                <h3>INE frente</h3>
+                <div id="ineAdminFrente" class="previsualizacion"></div>
+              </div>
+              <div>
+                <h3>INE reverso</h3>
+                <div id="ineAdminReverso" class="previsualizacion"></div>
+              </div>
+            </div>
+            <details>
+              <summary>Evidencia del cliente</summary>
+              <div id="evidenciaAdmin" class="hash"></div>
+            </details>
+            <div class="acciones">
+              <button id="descargarClienteAdmin" disabled>
+                Descargar contrato del cliente</button
+              ><button id="descargarFinalAdmin" hidden>
+                Descargar contrato final</button
+              ><button id="reciboAdmin" hidden class="secundario">
+                Descargar evidencia
+              </button>
+            </div>
+            <div id="zonaFirmaAdmin">
+              <h2>Firma de LA PRESTADORA</h2>
+              <p class="nota">
+                Guarda una vez tu identificación y firma. Revisa cada expediente
+                antes de autorizar el contrato final. Otro firmante actúa en
+                representación de LA PRESTADORA indicada en el contrato.
+              </p>
+              <label for="modoFirmante">Quién firma</label>
+              <select id="modoFirmante">
+                <option value="titular">Dinah — datos predeterminados</option>
+                <option value="representante">Otra persona autorizada</option>
+              </select>
+              <label for="nombreFirmante">Nombre completo del firmante</label
+              ><input id="nombreFirmante" value="DINAH IRASEMA GÓMEZ MONTOYA" />
+              <div class="dos">
+                <div>
+                  <label for="rfcFirmante">RFC</label
+                  ><input id="rfcFirmante" value="GOMD700629RZ7" />
+                </div>
+                <div>
+                  <label for="curpFirmante">CURP</label
+                  ><input id="curpFirmante" maxlength="18" />
+                </div>
+              </div>
+              <label for="domicilioFirmante">Domicilio</label
+              ><input
+                id="domicilioFirmante"
+                value="Sierravista 284, Lindavista Norte, Gustavo A. Madero, Ciudad de México"
+              />
+              <label for="cargoFirmante"
+                >Cargo o carácter de representación</label
+              ><input id="cargoFirmante" value="Titular y prestadora" />
+              <div class="dos">
+                <div>
+                  <label for="inePrestadoraFrente"
+                    >INE del firmante — frente</label
+                  ><input
+                    id="inePrestadoraFrente"
+                    type="file"
+                    accept="image/jpeg,image/png,application/pdf"
+                  />
+                  <div
+                    id="vistaPrestadoraFrente"
+                    class="previsualizacion"
+                  ></div>
+                </div>
+                <div>
+                  <label for="inePrestadoraReverso"
+                    >INE del firmante — reverso</label
+                  ><input
+                    id="inePrestadoraReverso"
+                    type="file"
+                    accept="image/jpeg,image/png,application/pdf"
+                  />
+                  <div
+                    id="vistaPrestadoraReverso"
+                    class="previsualizacion"
+                  ></div>
+                </div>
+              </div>
+              <label for="firmaPrestadoraArchivo"
+                >Reemplazar firma con una imagen PNG (opcional)</label
+              ><input
+                id="firmaPrestadoraArchivo"
+                type="file"
+                accept="image/png"
+              />
+              <canvas
+                class="firma"
+                id="firmaAdmin"
+                width="1000"
+                height="330"
+                aria-label="Área para dibujar la firma de Dinah"
+              ></canvas>
+              <div class="acciones">
+                <button id="borrarAdmin" class="secundario">
+                  Borrar y dibujar otra firma
+                </button>
+              </div>
+              <button id="guardarPerfilFirmante" class="secundario">
+                Guardar mis datos, INE y firma predeterminados
+              </button>
+              <div id="estadoPerfilFirmante" class="estado" role="status"></div>
+              <label class="aceptacion"
+                ><input type="checkbox" id="revisadoAdmin" /><span
+                  >Revisé los datos, la identificación y el contrato del
+                  cliente. Acepto el contrato y autorizo registrar mi ubicación
+                  al firmar.</span
+                ></label
+              ><button id="firmarAdmin" class="verde" disabled>
+                Generar y guardar contrato final
+              </button>
+            </div>
+            <div
+              id="estadoAdmin"
+              class="estado"
+              role="status"
+              aria-live="polite"
+            ></div>
+          </section>
+          <section class="tarjeta visor">
+            <h2>Contrato del expediente</h2>
+            <iframe
+              id="pdfAdmin"
+              title="Contrato del expediente seleccionado"
+            ></iframe>
+          </section>
+        </div>
+      </section>
+    </main>
+    <footer>Dinah Gómez · Expedientes de contratos de clientes</footer>
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script>
+      // Motor del contrato y del PDF. El texto procede íntegramente del PDF proporcionado.
+      const PLANTILLA = [
+        "CONTRATO PARA LA ADQUISICIÓN DE ACTIVOS INMOBILIARIOS - NO. DE CONTRATO: {{numero}}",
+        "Contrato para la adquisición de activos inmobiliarios que celebran, por una parte, DINAH IRASEMA GÓMEZ MONTOYA, persona física con actividad empresarial, con RFC GOMD700629RZ7, con domicilio en Sierravista 284, Col. Lindavista Norte, Gustavo A. Madero, Ciudad de México, a quien en lo sucesivo se le denominará “LA PRESTADORA”; y por la otra parte {{nombre}}, a quien en lo sucesivo se le denominará “EL CONTRATANTE”, de conformidad con las siguientes declaraciones y cláusulas.",
+        "DECLARACIONES",
+        "I. DECLARA “LA PRESTADORA”:",
+        "A) Que es una persona física con actividad empresarial y cuenta con capacidad legal para celebrar el presente contrato y obligarse en sus términos.",
+        "B) Que dentro de sus actividades realiza servicios de formalización de operaciones relacionadas con activos inmobiliarios provenientes de bancos, administradoras, titulares de derechos y demás fuentes autorizadas, conforme a la naturaleza y condiciones particulares de cada operación.",
+        "C) Que señala como domicilio para efectos del presente contrato el ubicado en Sierravista 284, Col. Lindavista Norte, Gustavo A. Madero, Ciudad de México.",
+        "II. DECLARA “EL CONTRATANTE”:",
+        "A) Que es una persona física, mayor de edad y con capacidad jurídica suficiente para obligarse conforme al presente contrato.",
+        "B) Que señala como domicilio para efectos del presente contrato el ubicado en: {{domicilio}}. Teléfono: {{telefono}}. Correo electrónico: {{correo}}. Identificación oficial: {{identificacion}}. RFC: {{rfc}}. CURP: {{curp}}. Nacionalidad: {{nacionalidad}}.",
+        "C) Que tiene interés en realizar una operación respecto del siguiente activo: Folio/Clave: {{folio}}. Ubicación: {{direccionActivo}}. Banco/Administradora/Origen: {{banco}}. Situación jurídica/etapa: {{etapa}}.",
+        "D) Que cuenta con recursos económicos suficientes y de procedencia lícita para cubrir el precio total pactado de la operación y los demás conceptos que legalmente correspondan.",
+        "E) Que reconoce que la naturaleza y situación jurídica de cada activo puede variar y que la operación deberá desarrollarse conforme a la documentación, estado jurídico y condiciones particulares aplicables.",
+        "III. DECLARAN AMBAS PARTES:",
+        "Que es su libre voluntad celebrar el presente contrato, reconociéndose mutuamente la capacidad con la que comparecen y manifestando que no existe error, dolo, mala fe o cualquier otro vicio de la voluntad que pudiera afectar su consentimiento.",
+        "CLÁUSULAS",
+        "PRIMERA. OBJETO DEL CONTRATO.",
+        "El presente contrato tiene por objeto establecer las condiciones aplicables a la adquisición del activo identificado en las declaraciones, así como los servicios de formalización de la operación que realizará LA PRESTADORA para conducir la operación hasta su conclusión, de acuerdo con la naturaleza, situación jurídica y condiciones particulares del activo.",
+        "Los servicios podrán comprender, según resulte aplicable, la integración y revisión de la información disponible; elaboración del dictamen correspondiente; preparación y presentación de la oferta; seguimiento de su aceptación; integración documental; coordinación de los actos necesarios para la formalización; y demás actuaciones relacionadas con el desarrollo de la operación hasta su conclusión.",
+        "La aceptación, rechazo, modificación de precio o de cualquier otra condición de la operación que corresponda a un banco, administradora, titular de derechos o tercero facultado dependerá exclusivamente de dicha entidad o persona, por lo que LA PRESTADORA no garantiza la aceptación de una oferta determinada.",
+        "SEGUNDA. INFORMACIÓN, DOCUMENTACIÓN, DICTAMEN Y CONOCIMIENTO DEL ACTIVO.",
+        "LA PRESTADORA elaborará y entregará a EL CONTRATANTE un dictamen de la operación, en el que se integrarán los datos y antecedentes disponibles respecto del activo, incluyendo su situación jurídica, etapa procesal y demás elementos identificados durante la revisión.",
+        "Asimismo, LA PRESTADORA proporcionará a EL CONTRATANTE la documentación que haya sido facilitada por el banco, administradora o titular de los derechos o del activo, según corresponda a cada operación, incluyendo aquella relacionada con el juicio, expediente y antecedentes jurídicos.",
+        "EL CONTRATANTE reconoce que el contenido y alcance de dicha documentación podrá variar de acuerdo con el banco, administradora o titular correspondiente, así como con la situación jurídica y etapa en que se encuentre el activo.",
+        "El dictamen y los documentos correspondientes serán entregados a EL CONTRATANTE para que puedan ser revisados por el abogado de su elección antes de tomar la decisión de continuar con la adquisición.",
+        "Las partes reconocen expresamente que el dictamen elaborado por LA PRESTADORA tiene como finalidad integrar y presentar los elementos de la operación y no sustituye el análisis, dictamen u opinión jurídica independiente del abogado de EL CONTRATANTE.",
+        "TERCERA. OFERTA Y CONDICIONES DE LA OPERACIÓN.",
+        "Una vez que EL CONTRATANTE manifieste su decisión de continuar, LA PRESTADORA realizará las actuaciones correspondientes para preparar y presentar la oferta conforme a las condiciones disponibles para el activo.",
+        "Cuando exista una contraoferta, modificación del precio o un cambio sustancial en las condiciones inicialmente planteadas, se hará del conocimiento de EL CONTRATANTE para que determine si desea continuar. La decisión definitiva de aceptar o rechazar cualquier modificación corresponderá a EL CONTRATANTE.",
+        "CUARTA. PRECIO Y FORMA DE PAGO DE LA OPERACIÓN.",
+        "El importe total pactado para la operación será de {{precioFormato}} M.N. ({{precioLetra}}). EL CONTRATANTE se obliga a liquidar el importe total acordado en el presente contrato, en tiempo y forma, mediante los pagos a las cuentas establecidas en el ANEXO DE PAGOS, conforme a las instrucciones de LA PRESTADORA. La suma de dichos pagos deberá coincidir con el importe total pactado en este contrato.",
+        "Una vez que el banco, administradora, institución financiera o titular de los derechos acepte la oferta de EL CONTRATANTE, éste deberá liquidar el importe total acordado o realizar los pagos conforme a las instrucciones emitidas y/o comunicadas por LA PRESTADORA para iniciar la protocolización o formalización de la compra. Los montos, cuentas y plazos correspondientes quedarán asentados en el ANEXO DE PAGOS. En todos los casos, la suma de los pagos deberá cubrir el importe total pactado en el presente contrato.",
+        "El ANEXO DE PAGOS se incorporará al presente contrato y será firmado digitalmente por separado por las partes cuando el banco, administradora o titular emita las cartas u órdenes de pago correspondientes. Contendrá los datos del beneficiario, banco, cuenta, CLABE interbancaria, cantidad, concepto y fecha o condición de cada pago. Las cartas u órdenes de pago quedarán vinculadas a dicho anexo.",
+        "Las modificaciones a las instrucciones, fechas o condiciones de pago deberán comunicarse a EL CONTRATANTE y documentarse en la actualización o complemento del ANEXO DE PAGOS que corresponda, sin alterar el importe total pactado salvo acuerdo escrito de las partes.",
+        "EL CONTRATANTE se obliga a entregar en tiempo y forma la documentación necesaria para formalizar la adquisición y a presentarse a la firma o protocolización ante notario en la fecha y hora previamente notificadas y acordadas, a fin de que LA PRESTADORA pueda dar cumplimiento a lo establecido en el presente contrato para la formalización de dicha adquisición.",
+        "Si, por causa imputable a EL CONTRATANTE, éste desiste de la operación después de aceptada la oferta, no liquida el importe total en los plazos establecidos, no entrega la documentación necesaria dentro del plazo comunicado o no se presenta a la firma o protocolización acordada, dicho incumplimiento será causa de terminación del presente contrato y se generará a su cargo una pena convencional equivalente al 20 % del importe total pactado en el presente contrato. La terminación no extinguirá la obligación de cubrir dicha pena convencional, en los términos legalmente aplicables.",
+        "QUINTA. SERVICIOS DE FORMALIZACIÓN DE LA OPERACIÓN.",
+        "Los servicios a cargo de LA PRESTADORA comprenden la formalización necesaria para el desarrollo de la operación, incluyendo, según corresponda, la integración de la información disponible del activo, elaboración del dictamen, preparación y presentación de la oferta, seguimiento de su aceptación, integración documental y demás actuaciones necesarias para llevar la operación hasta su conclusión conforme a la naturaleza y situación jurídica particular del activo.",
+        "Las partes reconocen que no todas las operaciones concluyen mediante el mismo instrumento jurídico. La forma de conclusión dependerá del estado jurídico del activo y de la documentación aplicable a cada caso.",
+        "SEXTA. FORMALIZACIÓN Y CONCLUSIÓN DE LA OPERACIÓN.",
+        "La operación se considerará concluida una vez que el banco, administradora o titular haya formalizado a favor de EL CONTRATANTE la cesión o traslado de derechos, escritura o acto de adquisición que corresponda, ante notario público cuando resulte aplicable, conforme a la documentación revisada por el abogado de EL CONTRATANTE y a las condiciones aceptadas para el activo.",
+        "LA PRESTADORA coordinará y acompañará la operación hasta la firma y protocolización, cuando corresponda, del instrumento mediante el cual el titular transmita a EL CONTRATANTE los derechos o el activo contratado. Cuando el activo cuente con posesión desde el inicio de la operación y ésta forme parte de las condiciones bajo las cuales fue ofrecido, la conclusión comprenderá también la entrega de dicha posesión.",
+        "Cuando el activo no cuente con posesión, la obligación de LA PRESTADORA concluirá con la formalización de la cesión o traslado de derechos o de la escritura, según corresponda. En estos casos, la obtención o recuperación posterior de la posesión no forma parte de los servicios ni de las obligaciones de LA PRESTADORA y deberá ser realizada por EL CONTRATANTE con el abogado o profesionista de su elección.",
+        "SÉPTIMA. ACTUACIONES POSTERIORES.",
+        "Cuando, por la naturaleza o situación jurídica del activo, después de concluida la operación resulte necesario continuar con procedimientos judiciales, recuperación material, desocupación, lanzamiento, toma de posesión, escrituración, regularización u otras actuaciones posteriores, dichas actuaciones no forman parte de los servicios contratados con LA PRESTADORA.",
+        "EL CONTRATANTE será responsable de designar al abogado o profesionista que continuará con dichas actuaciones. LA PRESTADORA no asumirá la representación judicial de EL CONTRATANTE ni la conducción del procedimiento posterior a la conclusión de la operación.",
+        "OCTAVA. ASESORÍAS POSTERIORES.",
+        "Una vez concluida la operación, LA PRESTADORA otorgará a EL CONTRATANTE dos asesorías de seguimiento, sin costo adicional, que podrán utilizarse durante el procedimiento posterior que, en su caso, se encuentre a cargo de EL CONTRATANTE y de su abogado.",
+        "Las asesorías tendrán carácter informativo y de orientación general respecto del avance que EL CONTRATANTE y/o su abogado reporten y de las dudas relacionadas con la operación realizada.",
+        "Estas asesorías no implican representación jurídica, dirección del procedimiento, sustitución del abogado de EL CONTRATANTE, elaboración de promociones judiciales ni responsabilidad de LA PRESTADORA respecto de las actuaciones, estrategias, plazos o resultados del procedimiento posterior.",
+        "NOVENA. CARTA DE CONCLUSIÓN Y DESLINDE.",
+        "Una vez concluida la operación objeto del presente contrato, se emitirá la documentación de conclusión correspondiente y, cuando resulte aplicable, una Carta de Conclusión y Deslinde en la que se hará constar que han concluido las obligaciones relativas a la formalización de la operación.",
+        "La carta podrá identificar, según corresponda, al banco, administradora, titular o entidad relacionada con la operación; a LA PRESTADORA; y al asesor comercial que hubiera intervenido.",
+        "Cuando existan actuaciones posteriores a cargo del abogado elegido por EL CONTRATANTE, se hará constar que la continuación y responsabilidad de dichas actuaciones corresponde a EL CONTRATANTE y al profesionista que éste haya designado, sin perjuicio de las dos asesorías de seguimiento previstas en el presente contrato.",
+        "DÉCIMA. CONTINUIDAD DE LA OPERACIÓN Y PAGOS REALIZADOS.",
+        "Una vez liquidada la totalidad del precio pactado conforme al ANEXO DE PAGOS y encontrándose la operación en proceso de formalización, EL CONTRATANTE reconoce que no procederá la cancelación ni devolución por desistimiento, cambio de decisión o cualquier causa imputable al propio CONTRATANTE, toda vez que la operación habrá entrado en su etapa de formalización.",
+        "A partir de dicho momento se continuará con los actos y procedimientos que correspondan hasta la conclusión de la operación, de acuerdo con su naturaleza, situación jurídica y condiciones particulares.",
+        "Lo anterior se entiende sin perjuicio de los derechos que, en su caso, resulten irrenunciables conforme a la legislación aplicable.",
+        "DÉCIMA PRIMERA. GASTOS Y ACTUACIONES POSTERIORES NO INCLUIDOS.",
+        "Salvo pacto expreso y por escrito en contrario, no se encuentran incluidos dentro de los servicios de LA PRESTADORA los honorarios del abogado contratado directamente por EL CONTRATANTE para etapas posteriores, gastos judiciales posteriores, notariales, fiscales, registrales, escrituración, impuestos, derechos, servicios, adeudos u otros conceptos que deban cubrirse con posterioridad y que no formen parte del precio total pactado documentado para la operación.",
+        "DÉCIMA SEGUNDA. OBLIGACIONES DE EL CONTRATANTE.",
+        "EL CONTRATANTE se obliga a proporcionar información y documentación verdadera y completa; revisar oportunamente la documentación que le sea proporcionada; realizar los pagos establecidos en el ANEXO DE PAGOS dentro de los montos, fechas y plazos ahí señalados; conservar y proporcionar los comprobantes de pago cuando sean requeridos; atender las solicitudes documentales necesarias para continuar con la operación; y designar, cuando resulte necesario, al abogado que continuará con las actuaciones posteriores a la conclusión de los servicios de LA PRESTADORA.",
+        "DÉCIMA TERCERA. PLAZOS.",
+        "EL CONTRATANTE reconoce que los tiempos de formalización pueden depender de terceros, incluyendo bancos, administradoras, titulares, fedatarios, autoridades, juzgados y demás personas o instituciones que intervengan en cada operación.",
+        "Por lo anterior, cualquier plazo comunicado tendrá carácter estimativo cuando su cumplimiento dependa de actuaciones ajenas al control directo de LA PRESTADORA, salvo que exista un compromiso expreso y por escrito que establezca lo contrario.",
+        "DÉCIMA CUARTA. CONFIDENCIALIDAD Y USO DE INFORMACIÓN.",
+        "Las partes se obligan a manejar de manera confidencial la información y documentación no pública recibida con motivo de la operación y a utilizarla exclusivamente para los fines relacionados con el presente contrato.",
+        "EL CONTRATANTE se obliga a no divulgar, reproducir, comercializar, ceder o utilizar indebidamente información reservada relacionada con inventarios, precios, expedientes, contactos, fuentes, documentos o demás información proporcionada exclusivamente para la operación, salvo autorización expresa o requerimiento legal.",
+        "DÉCIMA QUINTA. DATOS PERSONALES.",
+        "Los datos personales y documentación proporcionados por EL CONTRATANTE serán utilizados para la integración, seguimiento y formalización de la operación y para el cumplimiento de las obligaciones legales relacionadas con la misma, conforme a la legislación aplicable y al aviso de privacidad que, en su caso, corresponda.",
+        "DÉCIMA SEXTA. VIGENCIA.",
+        "El presente contrato entrará en vigor a partir de su firma y permanecerá vigente hasta la formalización a favor de EL CONTRATANTE de la cesión o traslado de derechos, escritura o acto de adquisición que corresponda, ante notario público cuando resulte aplicable, conforme a la documentación revisada por su abogado y a las condiciones aceptadas para la operación. Cuando la posesión forme parte de las condiciones contratadas y se encuentre disponible desde el inicio, la conclusión comprenderá también su entrega, conforme a la cláusula sexta. Lo anterior estará sujeto a la terminación anticipada por incumplimiento prevista en la cláusula cuarta o a las demás causas legalmente aplicables.",
+        "La conclusión de la operación no extinguirá aquellas obligaciones que por su naturaleza deban subsistir, incluyendo confidencialidad, protección de información y las dos asesorías posteriores establecidas en este contrato.",
+        "DÉCIMA SÉPTIMA. MODIFICACIONES Y DOCUMENTOS INTEGRANTES.",
+        "Cualquier modificación sustancial a las condiciones particulares de la operación o al presente contrato deberá constar por escrito y ser aceptada por las partes. El ANEXO DE PAGOS, así como las aceptaciones de oferta y demás documentos que expresamente se vinculen con la operación, formarán parte integrante del presente contrato cuando sean aceptados o suscritos por las partes según corresponda.",
+        "DÉCIMA OCTAVA. JURISDICCIÓN.",
+        "Para la interpretación y cumplimiento del presente contrato, las partes se someten a las leyes aplicables y a los tribunales competentes de la Ciudad de México, renunciando, en su caso, a cualquier otro fuero que pudiera corresponderles por razón de su domicilio presente o futuro, en la medida permitida por la legislación aplicable.",
+      ];
+      const CAMPOS = [
+        "numero",
+        "nombre",
+        "rfc",
+        "curp",
+        "nacionalidad",
+        "domicilio",
+        "telefono",
+        "correo",
+        "identificacion",
+        "folio",
+        "direccionActivo",
+        "banco",
+        "etapa",
+        "precio",
+        "precioLetra",
+      ];
+      const TITULOS = new Set(["DECLARACIONES", "CLÁUSULAS"]);
+      const $ = (id) => document.getElementById(id);
+      const esTitulo = (p) =>
+        TITULOS.has(p) ||
+        /^(I{1,3}\. DECLARA|(?:PRIMERA|SEGUNDA|TERCERA|CUARTA|QUINTA|SEXTA|SÉPTIMA|OCTAVA|NOVENA|DÉCIMA(?: [A-ZÁÉÍÓÚÑ]+)?)\.)/.test(
+          p,
+        );
+      function importeNumero(valor) {
+        const limpio = String(valor)
+          .trim()
+          .replace(/^\$\s*/, "");
+        if (!/^(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d{1,2})?$/.test(limpio))
+          return null;
+        const numero = Number(limpio.replaceAll(",", ""));
+        return Number.isFinite(numero) &&
+          numero > 0 &&
+          numero <= 999999999999.99
+          ? numero
+          : null;
+      }
+      function capturar() {
+        const d = {};
+        for (const k of CAMPOS) d[k] = $(k).value.trim();
+        for (const k of ["rfc", "curp", "identificacion"])
+          d[k] = d[k].toUpperCase();
+        const importe = importeNumero(d.precio);
+        d.precio = importe === null ? "" : importe.toFixed(2);
+        d.precioFormato =
+          importe === null
+            ? "________________"
+            : new Intl.NumberFormat("es-MX", {
+                style: "currency",
+                currency: "MXN",
+                minimumFractionDigits: 2,
+              }).format(importe);
+        return d;
+      }
+      function parrafos(d) {
+        return PLANTILLA.map((p) =>
+          p.replace(
+            /\{\{(\w+)\}\}/g,
+            (_, k) =>
+              d[k] || (k === "numero" ? "POR ASIGNAR" : "________________"),
+          ),
+        );
+      }
+      function canonico(v) {
+        if (Array.isArray(v)) return "[" + v.map(canonico).join(",") + "]";
+        if (v && typeof v === "object")
+          return (
+            "{" +
+            Object.keys(v)
+              .sort()
+              .map((k) => JSON.stringify(k) + ":" + canonico(v[k]))
+              .join(",") +
+            "}"
+          );
+        return JSON.stringify(v);
+      }
+      async function sha256(value) {
+        let b;
+        if (value instanceof Blob) b = await value.arrayBuffer();
+        else if (typeof value === "string") b = new TextEncoder().encode(value);
+        else b = value;
+        return Array.from(
+          new Uint8Array(await crypto.subtle.digest("SHA-256", b)),
+        )
+          .map((n) => n.toString(16).padStart(2, "0"))
+          .join("");
+      }
+      function dineroLetra(importe) {
+        const n = Math.round(Number(importe) * 100);
+        if (!Number.isSafeInteger(n) || n < 0) return "";
+        const entero = Math.floor(n / 100),
+          centavos = String(n % 100).padStart(2, "0");
+        const u = [
+          "",
+          "uno",
+          "dos",
+          "tres",
+          "cuatro",
+          "cinco",
+          "seis",
+          "siete",
+          "ocho",
+          "nueve",
+          "diez",
+          "once",
+          "doce",
+          "trece",
+          "catorce",
+          "quince",
+          "dieciséis",
+          "diecisiete",
+          "dieciocho",
+          "diecinueve",
+          "veinte",
+          "veintiuno",
+          "veintidós",
+          "veintitrés",
+          "veinticuatro",
+          "veinticinco",
+          "veintiséis",
+          "veintisiete",
+          "veintiocho",
+          "veintinueve",
+        ];
+        const de = [
+            "",
+            "",
+            "",
+            "treinta",
+            "cuarenta",
+            "cincuenta",
+            "sesenta",
+            "setenta",
+            "ochenta",
+            "noventa",
+          ],
+          ce = [
+            "",
+            "ciento",
+            "doscientos",
+            "trescientos",
+            "cuatrocientos",
+            "quinientos",
+            "seiscientos",
+            "setecientos",
+            "ochocientos",
+            "novecientos",
+          ];
+        const ap = (s) =>
+          s.replace(/veintiuno$/, "veintiún").replace(/uno$/, "un");
+        function bajo(x) {
+          if (x < 30) return u[x];
+          if (x < 100)
+            return de[Math.floor(x / 10)] + (x % 10 ? " y " + u[x % 10] : "");
+          if (x === 100) return "cien";
+          return ce[Math.floor(x / 100)] + (x % 100 ? " " + bajo(x % 100) : "");
+        }
+        function letras(x) {
+          if (x < 1000) return bajo(x);
+          if (x < 1000000)
+            return (
+              (Math.floor(x / 1000) === 1
+                ? "mil"
+                : ap(bajo(Math.floor(x / 1000))) + " mil") +
+              (x % 1000 ? " " + bajo(x % 1000) : "")
+            );
+          return (
+            (Math.floor(x / 1000000) === 1
+              ? "un millón"
+              : ap(letras(Math.floor(x / 1000000))) + " millones") +
+            (x % 1000000 ? " " + letras(x % 1000000) : "")
+          );
+        }
+        let l = entero ? ap(letras(entero)) : "cero";
+        l = l.charAt(0).toUpperCase() + l.slice(1);
+        return `${l}${entero > 0 && entero % 1000000 === 0 ? " de" : ""} pesos ${centavos}/100 M.N.`;
+      }
+      function instalarFirma(canvas) {
+        const ctx = canvas.getContext("2d");
+        let dibujando = false,
+          firmado = false;
+        ctx.lineWidth = 4;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.strokeStyle = "#101827";
+        function punto(e) {
+          const r = canvas.getBoundingClientRect();
+          return {
+            x: ((e.clientX - r.left) * canvas.width) / r.width,
+            y: ((e.clientY - r.top) * canvas.height) / r.height,
+          };
+        }
+        canvas.addEventListener("pointerdown", (e) => {
+          e.preventDefault();
+          dibujando = true;
+          canvas.setPointerCapture(e.pointerId);
+          const p = punto(e);
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p.x + 0.1, p.y + 0.1);
+          ctx.stroke();
+          firmado = true;
+        });
+        canvas.addEventListener("pointermove", (e) => {
+          if (!dibujando) return;
+          e.preventDefault();
+          const p = punto(e);
+          ctx.lineTo(p.x, p.y);
+          ctx.stroke();
+        });
+        for (const t of ["pointerup", "pointercancel", "lostpointercapture"])
+          canvas.addEventListener(t, () => (dibujando = false));
+        return {
+          hay: () => firmado,
+          async cargar(png) {
+            const imagen = new Image();
+            await new Promise((resolve, reject) => {
+              imagen.onload = resolve;
+              imagen.onerror = () =>
+                reject(Error("No se pudo cargar la firma guardada."));
+              imagen.src = png;
+            });
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(imagen, 0, 0, canvas.width, canvas.height);
+            firmado = true;
+          },
+          borrar() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            firmado = false;
+            dibujando = false;
+          },
+          png: () => canvas.toDataURL("image/png"),
+        };
+      }
+      const firmaCliente = instalarFirma($("firmaCliente")),
+        firmaDinah = instalarFirma($("firmaAdmin"));
+      // Sólo sustituciones de caracteres no disponibles en la fuente PDF estándar.
+      function textoPdf(s) {
+        return String(s)
+          .replace(/[—–]/g, "-")
+          .replace(/\u00a0/g, " ")
+          .replace(
+            /[^\u0020-\u007e\u00a1-\u00ff\u2018\u2019\u201c\u201d]/g,
+            "?",
+          );
+      }
+      function envolver(s, font, size, width) {
+        const out = [];
+        let line = "";
+        for (const word0 of textoPdf(s).split(/\s+/)) {
+          let chunks = [],
+            word = word0;
+          while (font.widthOfTextAtSize(word, size) > width) {
+            let i = 1;
+            while (
+              i < word.length &&
+              font.widthOfTextAtSize(word.slice(0, i + 1), size) <= width
+            )
+              i++;
+            chunks.push(word.slice(0, i));
+            word = word.slice(i);
+          }
+          chunks.push(word);
+          for (const token of chunks) {
+            const candidate = line ? line + " " + token : token;
+            if (font.widthOfTextAtSize(candidate, size) > width && line) {
+              out.push(line);
+              line = token;
+            } else line = candidate;
+          }
+        }
+        if (line) out.push(line);
+        return out;
+      }
+      function horaLegible(iso) {
+        return new Intl.DateTimeFormat("es-MX", {
+          dateStyle: "long",
+          timeStyle: "long",
+          timeZone: "America/Mexico_City",
+        }).format(new Date(iso));
+      }
+      function geoLegible(g) {
+        return `Latitud ${g.latitud.toFixed(7)}, longitud ${g.longitud.toFixed(7)}. Precisión ${Math.round(g.precisionMetros)} m.`;
+      }
+      async function crearPdf(d, cliente = null) {
+        if (!window.PDFLib)
+          throw Error(
+            "No se cargó el generador de PDF. Revisa tu conexión y vuelve a abrir la página.",
+          );
+        const { PDFDocument, StandardFonts, rgb } = PDFLib;
+        const pdf = await PDFDocument.create();
+        const normal = await pdf.embedFont(StandardFonts.Helvetica),
+          bold = await pdf.embedFont(StandardFonts.HelveticaBold);
+        const azul = rgb(0.12, 0.2, 0.49),
+          tinta = rgb(0.09, 0.18, 0.29),
+          gris = rgb(0.4, 0.47, 0.57);
+        let page, y;
+        function nueva() {
+          page = pdf.addPage([612, 792]);
+          page.drawRectangle({
+            x: 0,
+            y: 744,
+            width: 612,
+            height: 48,
+            color: azul,
+          });
+          page.drawText("DG  |  DINAH GÓMEZ", {
+            x: 46,
+            y: 764,
+            size: 14,
+            font: bold,
+            color: rgb(1, 1, 1),
+          });
+          page.drawText("Contrato de clientes", {
+            x: 402,
+            y: 765,
+            size: 10,
+            font: normal,
+            color: rgb(1, 1, 1),
+          });
+          y = 719;
+        }
+        function escribir(s, heading = false) {
+          const size = heading ? 11 : 10.2,
+            font = heading ? bold : normal,
+            lines = envolver(s, font, size, 520);
+          if (heading && y < 100) nueva();
+          for (const l of lines) {
+            if (y < 61) nueva();
+            page.drawText(l, {
+              x: 46,
+              y,
+              size,
+              font,
+              color: heading ? azul : tinta,
+            });
+            y -= 15;
+          }
+          y -= heading ? 12 : 10;
+        }
+        nueva();
+        parrafos(d).forEach((p, i) => escribir(p, i === 0 || esTitulo(p)));
+        if (!cliente)
+          escribir("DOCUMENTO PARA REVISIÓN - PENDIENTE DE FIRMA", true);
+        let paginaFirma = null;
+        if (cliente) {
+          nueva();
+          paginaFirma = pdf.getPageCount() - 1;
+          escribir("FIRMAS DEL CONTRATO", true);
+          escribir("Número de contrato: " + d.numero);
+          escribir("Expediente: " + cliente.payload.expedienteId);
+          escribir("EL CONTRATANTE: " + d.nombre, true);
+          const img = await pdf.embedPng(cliente.png);
+          page.drawImage(img, { x: 48, y: 491, width: 260, height: 86 });
+          page.drawLine({
+            start: { x: 46, y: 485 },
+            end: { x: 336, y: 485 },
+            thickness: 0.7,
+            color: gris,
+          });
+          page.drawText("EL CONTRATANTE", {
+            x: 46,
+            y: 467,
+            size: 10,
+            font: bold,
+            color: tinta,
+          });
+          page.drawText("Firma electrónica del CONTRATANTE", {
+            x: 46,
+            y: 450,
+            size: 9,
+            font: normal,
+            color: gris,
+          });
+          y = 423;
+          escribir(
+            "Fecha y hora: " + horaLegible(cliente.payload.fechaHoraIso),
+          );
+          escribir("Fecha UTC: " + cliente.payload.fechaHoraIso);
+          escribir("Ubicación: " + geoLegible(cliente.payload.geolocalizacion));
+          y = 318;
+          escribir("LA PRESTADORA: DINAH IRASEMA GÓMEZ MONTOYA", true);
+          page.drawRectangle({
+            x: 46,
+            y: 170,
+            width: 290,
+            height: 98,
+            borderWidth: 0.7,
+            borderColor: gris,
+          });
+          page.drawText("Pendiente de firma de LA PRESTADORA", {
+            x: 55,
+            y: 205,
+            size: 9,
+            font: normal,
+            color: gris,
+          });
+          page.drawText("RFC GOMD700629RZ7", {
+            x: 46,
+            y: 150,
+            size: 10,
+            font: normal,
+            color: tinta,
+          });
+          nueva();
+          escribir("CONSTANCIA DE FIRMA DEL CONTRATANTE", true);
+          escribir(
+            "Esta constancia registra la aceptación y los datos técnicos capturados al firmar.",
+          );
+          const e = cliente.payload;
+          for (const [k, v] of [
+            ["Expediente", e.expedienteId],
+            ["Número de contrato", d.numero],
+            ["Nombre", d.nombre],
+            ["Correo", d.correo],
+            ["Identificación", d.identificacion],
+            ["UID Firebase", e.uidFirebase],
+            ["Fecha y hora (Ciudad de México)", horaLegible(e.fechaHoraIso)],
+            ["Fecha UTC", e.fechaHoraIso],
+            ["Ubicación", geoLegible(e.geolocalizacion)],
+            ["Ubicación capturada UTC", e.geolocalizacion.capturadaEnIso],
+            ["Zona horaria del dispositivo", e.zonaHoraria],
+            ["Idioma", e.idioma],
+            ["Navegador", e.userAgent],
+            ["Versión del contrato", e.versionContrato],
+          ])
+            escribir(k + ": " + v);
+          escribir(
+            "El cliente confirmó la lectura del contrato completo y otorgó su aceptación expresa.",
+          );
+          for (const [k, v] of Object.entries(e.hashesSha256))
+            escribir("SHA-256 " + k + ": " + v);
+          escribir(
+            "Cadena de verificación de evidencia (SHA-256): " + cliente.cadena,
+            true,
+          );
+          escribir(
+            "La cadena se obtiene del JSON canónico de la evidencia. El hash del PDF firmado se guarda fuera del PDF para evitar una referencia circular.",
+          );
+        }
+        const pages = pdf.getPages();
+        pages.forEach((p, i) =>
+          p.drawText(`Dinah Gómez | ${i + 1} de ${pages.length}`, {
+            x: 46,
+            y: 30,
+            size: 8,
+            font: normal,
+            color: gris,
+          }),
+        );
+        pdf.setTitle(
+          "Contrato de adquisición de activos inmobiliarios - " + d.numero,
+        );
+        pdf.setAuthor("Dinah Gómez");
+        pdf.setSubject(
+          cliente
+            ? "Firmado por el contratante; pendiente de la prestadora"
+            : "Contrato para revisión",
+        );
+        return {
+          blob: new Blob([await pdf.save()], { type: "application/pdf" }),
+          paginaFirma,
+        };
+      }
+      async function crearPdfFinal(blob, d, base, admin) {
+        const { PDFDocument, StandardFonts, rgb } = PDFLib,
+          pdf = await PDFDocument.load(await blob.arrayBuffer()),
+          normal = await pdf.embedFont(StandardFonts.Helvetica),
+          bold = await pdf.embedFont(StandardFonts.HelveticaBold),
+          azul = rgb(0.12, 0.2, 0.49),
+          tinta = rgb(0.09, 0.18, 0.29);
+        const p = pdf.getPage(base.paginaFirma);
+        p.drawRectangle({
+          x: 47,
+          y: 171,
+          width: 288,
+          height: 96,
+          color: rgb(1, 1, 1),
+        });
+        const etiquetaFirmante = textoPdf("Firmante: " + admin.payload.nombre);
+        p.drawText(etiquetaFirmante, {
+          x: 46,
+          y: 282,
+          size: Math.min(
+            9,
+            520 / normal.widthOfTextAtSize(etiquetaFirmante, 1),
+          ),
+          font: normal,
+          color: tinta,
+        });
+        const img = await pdf.embedPng(admin.png);
+        p.drawImage(img, { x: 48, y: 176, width: 260, height: 86 });
+        p.drawText("Firma electrónica de LA PRESTADORA", {
+          x: 46,
+          y: 130,
+          size: 9,
+          font: normal,
+          color: tinta,
+        });
+        p.drawText(textoPdf(horaLegible(admin.payload.fechaHoraIso)), {
+          x: 46,
+          y: 112,
+          size: 9,
+          font: normal,
+          color: tinta,
+        });
+        let page, y;
+        const nueva = () => {
+          page = pdf.addPage([612, 792]);
+          page.drawRectangle({
+            x: 0,
+            y: 744,
+            width: 612,
+            height: 48,
+            color: azul,
+          });
+          page.drawText("DG  |  EXPEDIENTE DEL CONTRATO", {
+            x: 46,
+            y: 764,
+            size: 12,
+            font: bold,
+            color: rgb(1, 1, 1),
+          });
+          y = 713;
+        };
+        const escribir = (s) => {
+          for (const line of envolver(s, normal, 10, 520)) {
+            if (y < 65) nueva();
+            page.drawText(line, {
+              x: 46,
+              y,
+              size: 10,
+              font: normal,
+              color: tinta,
+            });
+            y -= 15;
+          }
+          y -= 10;
+        };
+        nueva();
+        for (const [k, v] of [
+          ["Expediente", admin.payload.expedienteId],
+          ["Número de contrato", d.numero],
+          ["Contratante", d.nombre],
+          ["Prestadora", admin.payload.nombre],
+          ["RFC", admin.payload.rfc],
+          ["CURP", admin.payload.curp],
+          ["Domicilio del firmante", admin.payload.domicilio],
+          ["Cargo o representación", admin.payload.cargo],
+          ["SHA-256 INE frente del firmante", admin.payload.hashIneFrente],
+          ["SHA-256 INE reverso del firmante", admin.payload.hashIneReverso],
+          ["UID Firebase", admin.payload.uidFirebase],
+          [
+            "Fecha y hora (Ciudad de México)",
+            horaLegible(admin.payload.fechaHoraIso),
+          ],
+          ["Fecha UTC", admin.payload.fechaHoraIso],
+          ["Ubicación", geoLegible(admin.payload.geolocalizacion)],
+          [
+            "Ubicación capturada UTC",
+            admin.payload.geolocalizacion.capturadaEnIso,
+          ],
+          ["Zona horaria", admin.payload.zonaHoraria],
+          ["Navegador", admin.payload.userAgent],
+          ["Cadena anterior (cliente)", admin.payload.cadenaAnterior],
+          [
+            "SHA-256 del PDF firmado por el cliente",
+            admin.payload.hashContratoCliente,
+          ],
+          ["SHA-256 de la firma de la prestadora", admin.payload.hashFirma],
+          ["Cadena de verificación de la prestadora", admin.cadena],
+        ])
+          escribir(k + ": " + v);
+        escribir(
+          "La prestadora confirmó la revisión del expediente y aceptó el contrato. El documento contiene las firmas de ambas partes.",
+        );
+        escribir(
+          "El hash SHA-256 del PDF final se guarda en el expediente y en la evidencia descargable.",
+        );
+        for (const [titulo, archivo] of [
+          ["INE DEL CLIENTE - FRENTE", admin.clienteFrente],
+          ["INE DEL CLIENTE - REVERSO", admin.clienteReverso],
+          ["INE DEL FIRMANTE DE LA PRESTADORA - FRENTE", admin.frente],
+          ["INE DEL FIRMANTE DE LA PRESTADORA - REVERSO", admin.reverso],
+        ]) {
+          const bytes = await archivo.arrayBuffer();
+          let elementos;
+          if (archivo.type === "application/pdf") {
+            const origen = await PDFDocument.load(bytes);
+            elementos = await pdf.embedPages(origen.getPages());
+          } else
+            elementos = [
+              archivo.type === "image/png"
+                ? await pdf.embedPng(bytes)
+                : await pdf.embedJpg(bytes),
+            ];
+          for (const [indice, elemento] of elementos.entries()) {
+            nueva();
+            escribir(
+              titulo +
+                (elementos.length > 1
+                  ? " - " + (indice + 1) + " de " + elementos.length
+                  : ""),
+            );
+            escribir("Contrato: " + d.numero);
+            escribir(
+              titulo.includes("CLIENTE")
+                ? "Titular: " + d.nombre
+                : "Firmante: " + admin.payload.nombre,
+            );
+            const escala = Math.min(
+              520 / elemento.width,
+              (y - 65) / elemento.height,
+            );
+            const ancho = elemento.width * escala,
+              alto = elemento.height * escala;
+            const posicion = {
+              x: 46 + (520 - ancho) / 2,
+              y: y - alto,
+              width: ancho,
+              height: alto,
+            };
+            if (archivo.type === "application/pdf")
+              page.drawPage(elemento, posicion);
+            else page.drawImage(elemento, posicion);
+          }
+        }
+        const total = pdf.getPageCount();
+        pdf.getPages().forEach((pg, i) => {
+          pg.drawRectangle({
+            x: 43,
+            y: 20,
+            width: 525,
+            height: 23,
+            color: rgb(1, 1, 1),
+          });
+          pg.drawText(`Dinah Gómez | ${i + 1} de ${total}`, {
+            x: 46,
+            y: 30,
+            size: 8,
+            font: normal,
+            color: tinta,
+          });
+        });
+        pdf.setSubject("Contrato firmado por el contratante y la prestadora");
+        return new Blob([await pdf.save()], { type: "application/pdf" });
+      }
+    </script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+      import {
+        getAuth,
+        signInAnonymously,
+        signInWithEmailAndPassword,
+        signOut,
+        setPersistence,
+        browserLocalPersistence,
+        browserSessionPersistence,
+      } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+      import {
+        getFirestore,
+        doc,
+        setDoc,
+        getDoc,
+        getDocs,
+        collection,
+        serverTimestamp,
+        runTransaction,
+        query,
+        where,
+      } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyAohhx7Pe9v2-Vju5VPMKEwpIaYhV0CJZg",
+        authDomain: "contratos-clientes-dg.firebaseapp.com",
+        projectId: "contratos-clientes-dg",
+        storageBucket: "contratos-clientes-dg.firebasestorage.app",
+        messagingSenderId: "33834900204",
+        appId: "1:33834900204:web:df0c2fc94feaa78960a3c9",
+      };
+      const ADMIN_UID = "CRNjswkU06S1ryOv5jKU6j8c4C63";
+      const app = initializeApp(firebaseConfig, "clientesDG"),
+        auth = getAuth(app),
+        db = getFirestore(app);
+      const appAdmin = initializeApp(firebaseConfig, "adminClientesDG"),
+        authAdmin = getAuth(appAdmin),
+        dbAdmin = getFirestore(appAdmin);
+      const VERSION = "DG-CLIENTES-2026-10-02-admin-v1",
+        LOCAL_KEY = "dgClientesUltimoExpediente";
+      const nuevoId = () =>
+        "DG-" +
+        new Date().toISOString().slice(0, 10).replaceAll("-", "") +
+        "-" +
+        crypto.randomUUID().slice(0, 8).toUpperCase();
+      let borradorId = nuevoId();
+      $("numero").value = borradorId;
+      let ultimoId = "";
+      try {
+        ultimoId = localStorage.getItem(LOCAL_KEY) || "";
+      } catch {}
+      let documentoCliente = null,
+        blobCliente = null,
+        blobFinalCliente = null,
+        pendienteCarga = null,
+        ocupadoCliente = false,
+        lecturaCompleta = false,
+        urlPdf = null;
+      let expedienteAdmin = null,
+        blobAdminCliente = null,
+        blobAdminFinal = null,
+        pendienteAdmin = null,
+        ocupadoAdmin = false,
+        seleccionVersion = 0;
+      const urls = new Map();
+      function mensaje(id, text, tipo = "info") {
+        $(id).textContent = text;
+        $(id).className = "estado " + tipo;
+      }
+      function errorAmigable(e) {
+        const code = e?.code || "";
+        if (code.includes("permission-denied"))
+          return "Firebase rechazó el acceso. Revisa las reglas publicadas y el UID de la administradora. Tu firma no se perdió; puedes reintentar.";
+        if (/invalid-credential|wrong-password|user-not-found/.test(code))
+          return "Correo o contraseña incorrectos.";
+        if (code.includes("operation-not-allowed"))
+          return "Activa el acceso Anónimo y Correo electrónico/contraseña en Authentication de este proyecto.";
+        if (code.includes("network"))
+          return "No hay conexión con Firebase. Revisa internet y vuelve a intentar.";
+        return e?.message || "No fue posible completar la operación.";
+      }
+      function descargar(blob, nombre) {
+        const u = URL.createObjectURL(blob),
+          a = document.createElement("a");
+        a.href = u;
+        a.download = nombre;
+        document.body.append(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(u), 60000);
+      }
+      function establecerPdf(id, blob) {
+        if (urls.has(id)) URL.revokeObjectURL(urls.get(id));
+        const u = URL.createObjectURL(blob);
+        urls.set(id, u);
+        $(id).src = u;
+      }
+      function vistaArchivo(blob, id, nombre) {
+        const c = $(id);
+        c.replaceChildren();
+        if (urls.has(id)) URL.revokeObjectURL(urls.get(id));
+        const u = URL.createObjectURL(blob);
+        urls.set(id, u);
+        if (blob.type.startsWith("image/")) {
+          const im = document.createElement("img");
+          im.src = u;
+          im.alt = nombre;
+          c.append(im);
+        }
+        const a = document.createElement("a");
+        a.href = u;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = "Abrir " + nombre;
+        c.append(a);
+      }
+      function validarArchivo(file, label) {
+        if (!file) throw Error("Adjunta " + label + ".");
+        if (!["image/jpeg", "image/png", "application/pdf"].includes(file.type))
+          throw Error(label + ": usa JPG, PNG o PDF.");
+        if (file.size > 8 * 1024 * 1024 || file.size === 0)
+          throw Error(label + ": el archivo debe pesar entre 1 byte y 8 MB.");
+      }
+      function validarDatos() {
+        for (const k of CAMPOS) {
+          if (k === "numero") continue;
+          const el = $(k);
+          if (!el.checkValidity()) {
+            const nombre =
+              document.querySelector(`label[for="${k}"]`)?.textContent || k;
+            mensaje(
+              "estadoCliente",
+              "Revisa el campo «" +
+                nombre +
+                "». " +
+                (el.validity.valueMissing
+                  ? "Completa este dato para continuar."
+                  : el.validationMessage),
+              "error",
+            );
+            el.focus();
+            el.reportValidity();
+            return false;
+          }
+        }
+        return true;
+      }
+      function mostrarTexto(reset = true) {
+        const d = capturar(),
+          c = $("textoContrato");
+        c.hidden = false;
+        $("pdfContrato").hidden = true;
+        c.replaceChildren();
+        parrafos(d).forEach((p, i) => {
+          const el = document.createElement(
+            i === 0 ? "h2" : esTitulo(p) ? "h3" : "p",
+          );
+          el.textContent = p;
+          c.append(el);
+        });
+        if (reset) {
+          c.scrollTop = 0;
+          lecturaCompleta = false;
+          $("acepto").checked = false;
+          $("acepto").disabled = false;
+          $("avisoLectura").textContent =
+            "Revisa el contrato completo y marca la casilla para confirmar tu aceptación.";
+        }
+        $("textoContrato").hidden = false;
+        $("pdfContrato").hidden = true;
+      }
+      function registrarLectura() {
+        const c = $("textoContrato");
+        if (c.scrollTop + c.clientHeight >= c.scrollHeight - 12) {
+          lecturaCompleta = true;
+          $("avisoLectura").textContent =
+            "Llegaste al final del contrato. Confirma tus datos y marca la aceptación antes de firmar.";
+        }
+      }
+      $("textoContrato").addEventListener("scroll", registrarLectura);
+      for (const k of CAMPOS)
+        $(k).addEventListener("input", () => {
+          if (k === "precio") {
+            const importe = importeNumero($("precio").value);
+            $("precio").setCustomValidity(
+              $("precio").value.trim() && importe === null
+                ? "Escribe un importe válido, por ejemplo $2,850,000.00."
+                : "",
+            );
+            $("precioLetra").value =
+              importe === null ? "" : dineroLetra(importe);
+          }
+          mostrarTexto();
+        });
+      $("precio").addEventListener("blur", () => {
+        const importe = importeNumero($("precio").value);
+        if (importe !== null)
+          $("precio").value = new Intl.NumberFormat("es-MX", {
+            style: "currency",
+            currency: "MXN",
+            minimumFractionDigits: 2,
+          }).format(importe);
+      });
+      for (const [input, vista, label] of [
+        ["ineFrente", "vistaFrente", "INE frente"],
+        ["ineReverso", "vistaReverso", "INE reverso"],
+      ])
+        $(input).addEventListener("change", () => {
+          try {
+            const f = $(input).files[0];
+            validarArchivo(f, label);
+            vistaArchivo(f, vista, label);
+            mensaje(
+              "estadoCliente",
+              "Documento seleccionado: " + label + ". Se guardará al firmar.",
+            );
+          } catch (e) {
+            $(input).value = "";
+            $(vista).replaceChildren();
+            mensaje("estadoCliente", errorAmigable(e), "error");
+          }
+        });
+      $("borrarCliente").onclick = () => {
+        if (!ocupadoCliente && !pendienteCarga && !documentoCliente)
+          firmaCliente.borrar();
+      };
+      $("borrarAdmin").onclick = () => {
+        if (!ocupadoAdmin && !pendienteAdmin) firmaDinah.borrar();
+      };
+      $("preparar").onclick = () => {
+        try {
+          if (!validarDatos()) return;
+          validarArchivo($("ineFrente").files[0], "INE frente");
+          validarArchivo($("ineReverso").files[0], "INE reverso");
+          mostrarTexto();
+          mensaje(
+            "estadoCliente",
+            "Datos y documentos preparados. Revisa el texto completo a la derecha. El expediente se guardará en Firebase al firmar.",
+          );
+          $("textoContrato").focus();
+        } catch (e) {
+          mensaje("estadoCliente", errorAmigable(e), "error");
+        }
+      };
+      $("verTexto").onclick = () => {
+        $("textoContrato").hidden = false;
+        $("pdfContrato").hidden = true;
+      };
+      async function revision(descarga = false) {
+        try {
+          const d = capturar();
+          const { blob } = await crearPdf(d);
+          if (descarga) descargar(blob, "Contrato_para_revision.pdf");
+          else {
+            establecerPdf("pdfContrato", blob);
+            $("pdfContrato").hidden = false;
+            $("textoContrato").hidden = true;
+          }
+        } catch (e) {
+          mensaje("estadoCliente", errorAmigable(e), "error");
+        }
+      }
+      $("verPdf").onclick = () => revision();
+      $("descargarRevision").onclick = () => revision(true);
+      async function clienteAuth() {
+        await setPersistence(auth, browserLocalPersistence);
+        await auth.authStateReady();
+        return auth.currentUser || (await signInAnonymously(auth)).user;
+      }
+      async function ubicacion() {
+        if (!navigator.geolocation)
+          throw Error(
+            "Este navegador no admite ubicación. Abre el contrato en un navegador actualizado.",
+          );
+        if (!window.isSecureContext)
+          throw Error(
+            "La ubicación requiere una página HTTPS o localhost. Abre el contrato desde su enlace publicado.",
+          );
+        return new Promise((resolve, reject) =>
+          navigator.geolocation.getCurrentPosition(
+            (p) =>
+              resolve({
+                latitud: p.coords.latitude,
+                longitud: p.coords.longitude,
+                precisionMetros: p.coords.accuracy,
+                capturadaEnIso: new Date(p.timestamp).toISOString(),
+              }),
+            (e) =>
+              reject(
+                Error(
+                  e.code === 1
+                    ? "Permite el acceso a tu ubicación en el navegador y vuelve a firmar."
+                    : e.code === 2
+                      ? "No fue posible obtener tu ubicación. Activa la ubicación del dispositivo y vuelve a intentar."
+                      : "La ubicación tardó demasiado. Vuelve a intentar.",
+                ),
+              ),
+            { enableHighAccuracy: true, timeout: 25000, maximumAge: 0 },
+          ),
+        );
+      }
+      function bytesBase64(bytes) {
+        let s = "";
+        for (let i = 0; i < bytes.length; i += 32768)
+          s += String.fromCharCode(...bytes.subarray(i, i + 32768));
+        return btoa(s);
+      }
+      function base64Bytes(s) {
+        return Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+      }
+      async function guardarArchivo(
+        database,
+        id,
+        uid,
+        nombre,
+        blob,
+        raiz = "expedientesFirma",
+      ) {
+        const bytes = new Uint8Array(await blob.arrayBuffer()),
+          b64 = bytesBase64(bytes),
+          tamano = 450000,
+          total = Math.ceil(b64.length / tamano),
+          hash = await sha256(bytes);
+        for (let indice = 0; indice < total; indice++) {
+          const ref = doc(
+              database,
+              raiz,
+              id,
+              "archivos",
+              nombre + "_" + String(indice).padStart(4, "0"),
+            ),
+            contenidoBase64 = b64.slice(indice * tamano, (indice + 1) * tamano);
+          const anterior = await getDoc(ref);
+          if (anterior.exists()) {
+            const x = anterior.data();
+            if (
+              x.contenidoBase64 !== contenidoBase64 ||
+              x.total !== total ||
+              x.uid !== uid
+            )
+              throw Error(
+                "Un fragmento existente no coincide con este archivo. Conserva la página y revisa el expediente.",
+              );
+            continue;
+          }
+          await setDoc(ref, {
+            uid,
+            nombre,
+            indice,
+            total,
+            tipo: blob.type,
+            tamanoOriginal: blob.size,
+            contenidoBase64,
+          });
+        }
+        return {
+          nombre,
+          total,
+          tipo: blob.type,
+          tamano: blob.size,
+          sha256: hash,
+        };
+      }
+      async function recuperarArchivo(
+        database,
+        id,
+        manifest,
+        raiz = "expedientesFirma",
+      ) {
+        if (
+          !manifest ||
+          !Number.isInteger(manifest.total) ||
+          manifest.total < 1 ||
+          manifest.total > 100
+        )
+          throw Error("El expediente no contiene un archivo completo.");
+        const snap = await getDocs(
+          query(
+            collection(database, raiz, id, "archivos"),
+            where("nombre", "==", manifest.nombre),
+          ),
+        );
+        const chunks = snap.docs
+          .map((d) => d.data())
+          .sort((a, b) => a.indice - b.indice);
+        if (
+          chunks.length !== manifest.total ||
+          chunks.some(
+            (d, i) =>
+              d.indice !== i ||
+              d.total !== manifest.total ||
+              d.tipo !== manifest.tipo ||
+              d.tamanoOriginal !== manifest.tamano,
+          )
+        )
+          throw Error(
+            "El archivo está incompleto o sus fragmentos no coinciden.",
+          );
+        const bytes = base64Bytes(
+          chunks.map((c) => c.contenidoBase64).join(""),
+        );
+        if (
+          bytes.length !== manifest.tamano ||
+          (await sha256(bytes)) !== manifest.sha256
+        )
+          throw Error(
+            "La verificación SHA-256 del archivo no coincide. No se usará para firmar.",
+          );
+        return new Blob([bytes], { type: manifest.tipo });
+      }
+      async function comprobarEvidencia(e) {
+        if (!e?.evidencia?.cliente)
+          throw Error("Falta la evidencia de firma del cliente.");
+        const c = e.evidencia.cliente;
+        if (
+          c.payload.uidFirebase !== e.uid ||
+          c.payload.expedienteId !== e.expedienteId ||
+          c.payload.aceptacionExpresa !== true ||
+          (await sha256(canonico(e.contratante))) !==
+            c.payload.hashesSha256.datosContrato
+        )
+          throw Error(
+            "Los datos del contrato no coinciden con la evidencia firmada.",
+          );
+        if ((await sha256(canonico(c.payload))) !== c.cadena)
+          throw Error("La cadena de evidencia del cliente no coincide.");
+        if (
+          e.hashesSha256?.contratoCliente !==
+          e.archivos?.contratoCliente?.sha256
+        )
+          throw Error("El hash del contrato no coincide con el expediente.");
+        for (const [k, v] of [
+          ["ineFrente", "ineFrente"],
+          ["ineReverso", "ineReverso"],
+          ["firmaCliente", "firmaCliente"],
+        ])
+          if (c.payload.hashesSha256[k] !== e.archivos[v].sha256)
+            throw Error("El hash de la identificación no coincide.");
+        if (e.estado === "firmado_por_ambas_partes") {
+          const a = e.firmaComercializadora;
+          if (
+            a?.payload?.uidFirebase !== ADMIN_UID ||
+            (await sha256(canonico(a.payload))) !== a.cadena ||
+            a.payload.cadenaAnterior !== c.cadena ||
+            a.payload.hashContratoCliente !== e.hashesSha256.contratoCliente ||
+            e.hashesSha256.contratoFinal !==
+              e.archivosFinales?.contratoFinal?.sha256 ||
+            a.payload.hashFirma !== e.archivosFinales?.firmaPrestadora?.sha256
+          )
+            throw Error("La evidencia final no coincide.");
+        }
+      }
+      function congelarCliente() {
+        for (const el of $("formulario").elements) el.disabled = true;
+        $("firmarCliente").textContent = pendienteCarga
+          ? "Reintentar guardado"
+          : "Contrato enviado";
+        if (pendienteCarga) $("firmarCliente").disabled = false;
+      }
+      function guardarUltimo(id) {
+        ultimoId = id;
+        try {
+          localStorage.setItem(LOCAL_KEY, id);
+        } catch {}
+        $("ultimoId").textContent = id;
+        $("consultaAnterior").hidden = false;
+      }
+      // Lectura opcional de INE: se ejecuta en el navegador; se revisan los datos detectados.
+      let leyendoIne = false;
+      let promesaOcr = null;
+      function cargarMotorOcr() {
+        if (window.Tesseract) return Promise.resolve(window.Tesseract);
+        if (!promesaOcr) {
+          promesaOcr = new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src =
+              "https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js";
+            script.onload = () => resolve(window.Tesseract);
+            script.onerror = () => {
+              promesaOcr = null;
+              script.remove();
+              reject(
+                new Error(
+                  "No se pudo cargar el lector de INE. Revisa internet o captura los datos manualmente.",
+                ),
+              );
+            };
+            document.head.append(script);
+          });
+        }
+        return promesaOcr;
+      }
+      function detectarDatosIne(texto) {
+        const lineas = texto
+          .toUpperCase()
+          .split(/\r?\n/)
+          .map((l) => l.replace(/\s+/g, " ").trim())
+          .filter(Boolean);
+        const datos = {};
+        const completo = lineas.join("\n");
+        const curp = completo.match(/\b[A-ZÑ]{4}\d{6}[HM][A-Z]{5}[A-Z0-9]\d\b/);
+        const idmex = completo.replace(/[ \t]+/g, "").match(/IDMEX\d{10}/);
+        if (curp) datos.curp = curp[0];
+        if (idmex) datos.identificacion = idmex[0];
+        const detener =
+          /\b(DOMICILIO|CURP|CLAVE|ELECTOR|SEXO|FECHA|NACIMIENTO|ESTADO|MUNICIPIO|SECCI[ÓO]N|VIGENCIA|REGISTRO|INSTITUTO|CREDENCIAL|M[ÉE]XICO)\b/;
+        const indiceNombre = lineas.findIndex((l) => /^NOMBRE\b/.test(l));
+        if (indiceNombre >= 0) {
+          const partes = [];
+          const inline = lineas[indiceNombre].replace(/^NOMBRE\s*:?\s*/, "");
+          if (inline && /^[A-ZÁÉÍÓÚÑ ]+$/.test(inline)) partes.push(inline);
+          for (
+            let i = indiceNombre + 1;
+            i < lineas.length && partes.length < 3;
+            i++
+          ) {
+            if (detener.test(lineas[i])) break;
+            if (/^[A-ZÁÉÍÓÚÑ ]{2,80}$/.test(lineas[i])) partes.push(lineas[i]);
+          }
+          // La INE suele mostrar apellido paterno, materno y nombre en tres líneas.
+          if (partes.length === 3)
+            datos.nombre = `${partes[2]} ${partes[0]} ${partes[1]}`;
+          else if (partes.length === 1 && partes[0].split(" ").length >= 3)
+            datos.nombre = partes[0];
+        }
+        const indiceDomicilio = lineas.findIndex((l) => /^DOMICILIO\b/.test(l));
+        if (indiceDomicilio >= 0) {
+          const partes = [];
+          const inline = lineas[indiceDomicilio].replace(
+            /^DOMICILIO\s*:?\s*/,
+            "",
+          );
+          if (inline) partes.push(inline);
+          for (
+            let i = indiceDomicilio + 1;
+            i < lineas.length && partes.length < 4;
+            i++
+          ) {
+            if (
+              detener.test(lineas[i]) ||
+              /IDMEX|\b[A-Z]{4}\d{6}/.test(lineas[i])
+            )
+              break;
+            partes.push(lineas[i]);
+          }
+          if (partes.length >= 2 && partes.join(" ").length <= 500)
+            datos.domicilio = partes.join(", ");
+        }
+        return datos;
+      }
+      async function imagenParaOcr(archivo) {
+        const img = await createImageBitmap(archivo);
+        const escala = Math.min(1, 2000 / Math.max(img.width, img.height));
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.round(img.width * escala);
+        canvas.height = Math.round(img.height * escala);
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        img.close();
+        return canvas;
+      }
+      $("leerIne").onclick = async () => {
+        if (leyendoIne || ocupadoCliente || pendienteCarga || documentoCliente)
+          return;
+        let worker;
+        try {
+          const archivos = [
+            $("ineFrente").files[0],
+            $("ineReverso").files[0],
+          ].filter((f) => f && f.type.startsWith("image/"));
+          if (!archivos.length)
+            throw new Error(
+              "Selecciona una foto JPG o PNG de tu INE para leer sus datos. Si adjuntas un PDF, captura los datos manualmente.",
+            );
+          leyendoIne = true;
+          $("leerIne").disabled = true;
+          $("ineFrente").disabled = true;
+          $("ineReverso").disabled = true;
+          mensaje(
+            "estadoOcr",
+            "Preparando la lectura de la INE. La primera vez puede tardar un poco…",
+          );
+          const motor = await cargarMotorOcr();
+          worker = await motor.createWorker("spa", 1, {
+            workerPath:
+              "https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/worker.min.js",
+            langPath: "https://tessdata.projectnaptha.com/4.0.0",
+            logger: (m) => {
+              if (m.status === "recognizing text")
+                mensaje(
+                  "estadoOcr",
+                  `Leyendo INE: ${Math.round((m.progress || 0) * 100)} %.`,
+                );
+            },
+          });
+          let texto = "";
+          for (const archivo of archivos) {
+            const resultado = await worker.recognize(
+              await imagenParaOcr(archivo),
+            );
+            texto += "\n" + resultado.data.text;
+          }
+          const detectados = detectarDatosIne(texto);
+          const agregados = [];
+          for (const [campo, valor] of Object.entries(detectados)) {
+            // No sobrescribir una corrección o un dato que el cliente ya capturó.
+            if (!$(campo).value.trim()) {
+              $(campo).value = valor;
+              agregados.push(
+                document.querySelector(`label[for="${campo}"]`)?.textContent ||
+                  campo,
+              );
+            }
+          }
+          mostrarTexto();
+          if (agregados.length)
+            mensaje(
+              "estadoOcr",
+              "Datos detectados: " +
+                agregados.join(", ") +
+                ". Revisa y corrige todos los campos antes de firmar. El RFC, teléfono y correo se capturan manualmente.",
+              "exito",
+            );
+          else
+            mensaje(
+              "estadoOcr",
+              "No se detectaron datos nuevos con suficiente claridad o los campos ya estaban llenos. Captúralos o revísalos manualmente.",
+            );
+        } catch (error) {
+          mensaje("estadoOcr", errorAmigable(error), "error");
+        } finally {
+          if (worker) await worker.terminate().catch(() => {});
+          leyendoIne = false;
+          $("leerIne").disabled = Boolean(documentoCliente || pendienteCarga);
+          $("ineFrente").disabled = Boolean(documentoCliente || pendienteCarga);
+          $("ineReverso").disabled = Boolean(
+            documentoCliente || pendienteCarga,
+          );
+        }
+      };
+      $("formulario").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (ocupadoCliente || documentoCliente) return;
+        ocupadoCliente = true;
+        $("firmarCliente").disabled = true;
+        try {
+          if (leyendoIne)
+            throw Error(
+              "Espera a que termine la lectura de tu INE antes de firmar.",
+            );
+          if (!pendienteCarga) {
+            if (!validarDatos()) return;
+            validarArchivo($("ineFrente").files[0], "INE frente");
+            validarArchivo($("ineReverso").files[0], "INE reverso");
+            if (!$("acepto").checked)
+              throw Error(
+                "Marca la casilla de aceptación después de revisar el contrato.",
+              );
+            if (!firmaCliente.hay())
+              throw Error("Dibuja tu firma antes de continuar.");
+            mensaje("estadoCliente", "Solicitando tu ubicación…");
+            const g = await ubicacion(),
+              user = await clienteAuth(),
+              id = borradorId,
+              d = capturar();
+            d.numero = d.numero || id;
+            $("numero").value = d.numero;
+            const png = firmaCliente.png(),
+              frente = $("ineFrente").files[0],
+              reverso = $("ineReverso").files[0];
+            mensaje(
+              "estadoCliente",
+              "Generando el contrato y la evidencia de tu firma…",
+            );
+            const original = await crearPdf(d),
+              hashes = {
+                contratoParaRevision: await sha256(original.blob),
+                datosContrato: await sha256(canonico(d)),
+                ineFrente: await sha256(frente),
+                ineReverso: await sha256(reverso),
+                firmaCliente: await sha256(base64Bytes(png.split(",")[1])),
+              };
+            const payload = {
+              expedienteId: id,
+              uidFirebase: user.uid,
+              versionContrato: VERSION,
+              fechaHoraIso: new Date().toISOString(),
+              geolocalizacion: g,
+              zonaHoraria: Intl.DateTimeFormat().resolvedOptions().timeZone,
+              idioma: navigator.language,
+              userAgent: navigator.userAgent,
+              aceptacionExpresa: true,
+              lecturaDeclarada: true,
+              recorridoTextoCompleto: lecturaCompleta,
+              hashesSha256: hashes,
+            };
+            const evidencia = {
+                payload,
+                cadena: await sha256(canonico(payload)),
+              },
+              pdf = await crearPdf(d, { ...evidencia, png });
+            const contratoHash = await sha256(pdf.blob);
+            pendienteCarga = {
+              id,
+              uid: user.uid,
+              d,
+              frente,
+              reverso,
+              firma: new Blob([base64Bytes(png.split(",")[1])], {
+                type: "image/png",
+              }),
+              pdf: pdf.blob,
+              documento: {
+                expedienteId: id,
+                uid: user.uid,
+                versionContrato: VERSION,
+                estado: "pendiente_firma_comercializadora",
+                contratante: d,
+                paginaFirma: pdf.paginaFirma,
+                archivos: {},
+                hashesSha256: { ...hashes, contratoCliente: contratoHash },
+                evidencia: { cliente: evidencia },
+                cargaCompleta: false,
+              },
+            };
+            blobCliente = pdf.blob;
+            $("descargarCliente").hidden = false;
+            congelarCliente();
+          }
+          const t = pendienteCarga,
+            ref = doc(db, "expedientesFirma", t.id);
+          mensaje(
+            "estadoCliente",
+            "Guardando INE y contrato en Firebase. Mantén esta página abierta…",
+          );
+          let existente = null;
+          try {
+            existente = await getDoc(ref);
+          } catch (e) {
+            if (!String(e.code).includes("permission-denied")) throw e;
+          }
+          if (!existente?.exists())
+            await setDoc(ref, {
+              ...t.documento,
+              creadoEnServidor: serverTimestamp(),
+            });
+          else if (existente.data().uid !== t.uid)
+            throw Error("El expediente pertenece a otra sesión.");
+          const actual = await getDoc(ref);
+          if (!actual.data().cargaCompleta) {
+            const ineFrente = await guardarArchivo(
+                db,
+                t.id,
+                t.uid,
+                "ine_frente",
+                t.frente,
+              ),
+              ineReverso = await guardarArchivo(
+                db,
+                t.id,
+                t.uid,
+                "ine_reverso",
+                t.reverso,
+              ),
+              firmaCliente = await guardarArchivo(
+                db,
+                t.id,
+                t.uid,
+                "firma_cliente",
+                t.firma,
+              ),
+              contratoCliente = await guardarArchivo(
+                db,
+                t.id,
+                t.uid,
+                "contrato_cliente",
+                t.pdf,
+              );
+            await setDoc(
+              ref,
+              {
+                archivos: {
+                  ineFrente,
+                  ineReverso,
+                  firmaCliente,
+                  contratoCliente,
+                },
+                cargaCompleta: true,
+                completadoEnServidor: serverTimestamp(),
+              },
+              { merge: true },
+            );
+          }
+          documentoCliente = (await getDoc(ref)).data();
+          guardarUltimo(t.id);
+          pendienteCarga = null;
+          congelarCliente();
+          $("consultarFinal").hidden = false;
+          $("reciboCliente").hidden = false;
+          mensaje(
+            "estadoCliente",
+            "Contrato e INE guardados correctamente. Expediente: " +
+              t.id +
+              "\nPuedes descargar tu contrato firmado. Queda pendiente la firma de Dinah.",
+            "exito",
+          );
+          establecerPdf("pdfContrato", blobCliente);
+          $("pdfContrato").hidden = false;
+          $("textoContrato").hidden = true;
+        } catch (err) {
+          mensaje(
+            "estadoCliente",
+            errorAmigable(err) +
+              (pendienteCarga
+                ? "\nTu PDF firmado ya está disponible para descargar. Pulsa «Reintentar guardado» sin cerrar esta página."
+                : ""),
+            "error",
+          );
+          if (pendienteCarga) congelarCliente();
+        } finally {
+          ocupadoCliente = false;
+          if (!documentoCliente) $("firmarCliente").disabled = false;
+        }
+      });
+      $("descargarCliente").onclick = () => {
+        if (blobCliente)
+          descargar(
+            blobCliente,
+            "Contrato_cliente_" +
+              (documentoCliente?.expedienteId ||
+                pendienteCarga?.id ||
+                "firmado") +
+              ".pdf",
+          );
+      };
+      function recibo(e) {
+        const copy = {
+          expedienteId: e.expedienteId,
+          contratante: e.contratante,
+          estado: e.estado,
+          versionContrato: e.versionContrato,
+          paginaFirma: e.paginaFirma,
+          evidencia: e.evidencia,
+          firmaComercializadora: e.firmaComercializadora || null,
+          hashesSha256: e.hashesSha256,
+          archivos: e.archivos,
+          archivosFinales: e.archivosFinales || null,
+          creadoEnServidor:
+            e.creadoEnServidor?.toDate?.().toISOString() || null,
+          completadoEnServidor:
+            e.completadoEnServidor?.toDate?.().toISOString() || null,
+          finalizadoEnServidor:
+            e.finalizadoEnServidor?.toDate?.().toISOString() || null,
+          algoritmoCadena:
+            "SHA-256 del JSON canónico (claves ordenadas recursivamente)",
+          nota: "El hash final se guarda fuera del PDF. Las fechas del dispositivo y las marcas de tiempo de Firebase se distinguen en esta evidencia.",
+        };
+        descargar(
+          new Blob([JSON.stringify(copy, null, 2)], {
+            type: "application/json",
+          }),
+          "Evidencia_" + e.expedienteId + ".json",
+        );
+      }
+      $("reciboCliente").onclick = () => {
+        if (documentoCliente) recibo(documentoCliente);
+      };
+      $("descargarFinalCliente").onclick = () => {
+        if (blobFinalCliente)
+          descargar(blobFinalCliente, "Contrato_final_" + ultimoId + ".pdf");
+      };
+      async function consultarCliente(recuperar = false) {
+        try {
+          if (!ultimoId)
+            throw Error("No hay un expediente registrado en este navegador.");
+          mensaje("estadoCliente", "Consultando tu expediente…");
+          blobFinalCliente = null;
+          $("descargarFinalCliente").hidden = true;
+          await clienteAuth();
+          const snap = await getDoc(doc(db, "expedientesFirma", ultimoId));
+          if (!snap.exists()) throw Error("No se encontró el expediente.");
+          const e = snap.data();
+          if (!e.cargaCompleta)
+            throw Error("El expediente todavía no terminó de cargarse.");
+          await comprobarEvidencia(e);
+          documentoCliente = e;
+          if (recuperar || !blobCliente) {
+            blobCliente = await recuperarArchivo(
+              db,
+              ultimoId,
+              e.archivos.contratoCliente,
+            );
+            $("descargarCliente").hidden = false;
+            $("consultarFinal").hidden = false;
+            $("reciboCliente").hidden = false;
+            for (const k of CAMPOS) $(k).value = e.contratante[k] || "";
+            congelarCliente();
+            establecerPdf("pdfContrato", blobCliente);
+            $("pdfContrato").hidden = false;
+            $("textoContrato").hidden = true;
+          }
+          if (e.estado === "firmado_por_ambas_partes") {
+            blobFinalCliente = await recuperarArchivo(
+              db,
+              ultimoId,
+              e.archivosFinales.contratoFinal,
+            );
+            $("descargarFinalCliente").hidden = false;
+            establecerPdf("pdfContrato", blobFinalCliente);
+            mensaje(
+              "estadoCliente",
+              "Dinah ya firmó. Puedes descargar el contrato final con ambas firmas y su evidencia.",
+              "exito",
+            );
+          } else
+            mensaje(
+              "estadoCliente",
+              "Tu contrato está guardado y pendiente de la firma de Dinah.",
+            );
+        } catch (err) {
+          mensaje("estadoCliente", errorAmigable(err), "error");
+        }
+      }
+      $("consultarFinal").onclick = () => consultarCliente();
+      $("recuperarCliente").onclick = () => consultarCliente(true);
+      $("nuevoCliente").onclick = () => {
+        if (ocupadoCliente) return;
+        if (
+          pendienteCarga &&
+          !confirm(
+            "Hay una carga pendiente. ¿Deseas empezar otro contrato? Descarga primero el PDF firmado.",
+          )
+        )
+          return;
+        pendienteCarga = null;
+        documentoCliente = null;
+        blobCliente = null;
+        blobFinalCliente = null;
+        for (const el of $("formulario").elements) el.disabled = false;
+        $("formulario").reset();
+        $("precio").setCustomValidity("");
+        borradorId = nuevoId();
+        $("numero").value = borradorId;
+        firmaCliente.borrar();
+        $("vistaFrente").replaceChildren();
+        $("vistaReverso").replaceChildren();
+        $("firmarCliente").textContent = "Firmar y guardar contrato";
+        mensaje("estadoOcr", "");
+        for (const id of [
+          "descargarCliente",
+          "consultarFinal",
+          "descargarFinalCliente",
+          "reciboCliente",
+        ])
+          $(id).hidden = true;
+        mensaje("estadoCliente", "Completa los datos del nuevo contrato.");
+        mostrarTexto();
+      };
+      let toquesLogo = 0,
+        ultimoToqueLogo = 0;
+      $("accesoPrivadoDG").addEventListener("click", () => {
+        const ahora = Date.now();
+        toquesLogo = ahora - ultimoToqueLogo < 2500 ? toquesLogo + 1 : 1;
+        ultimoToqueLogo = ahora;
+        if (toquesLogo === 5) {
+          toquesLogo = 0;
+          $("abrirAdmin").click();
+        }
+      });
+      $("abrirAdmin").onclick = () => {
+        $("portalCliente").hidden = true;
+        $("portalAdmin").hidden = false;
+        $("abrirAdmin").hidden = true;
+        $("volverCliente").hidden = false;
+      };
+      $("volverCliente").onclick = () => {
+        $("portalCliente").hidden = false;
+        $("portalAdmin").hidden = true;
+        $("abrirAdmin").hidden = true;
+        $("volverCliente").hidden = true;
+      };
+      let perfilPredeterminado = null;
+      let ineFirmanteFrente = null,
+        ineFirmanteReverso = null;
+      let ineClienteFrenteAdmin = null,
+        ineClienteReversoAdmin = null;
+      let guardandoPerfil = false;
+      const CAMPOS_FIRMANTE = ["nombre", "rfc", "curp", "domicilio", "cargo"];
+      function datosFirmante() {
+        const datos = { modo: $("modoFirmante").value };
+        for (const campo of CAMPOS_FIRMANTE)
+          datos[campo] = $(campo + "Firmante").value.trim();
+        datos.rfc = datos.rfc.toUpperCase();
+        datos.curp = datos.curp.toUpperCase();
+        if (
+          !datos.nombre ||
+          !datos.domicilio ||
+          !datos.cargo ||
+          !/^[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}$/.test(datos.rfc) ||
+          !/^[A-ZÑ]{4}\d{6}[HM][A-Z]{5}[A-Z0-9]\d$/.test(datos.curp)
+        )
+          throw Error(
+            "Completa nombre, RFC, CURP, domicilio y cargo del firmante.",
+          );
+        validarArchivo(ineFirmanteFrente, "INE frente del firmante");
+        validarArchivo(ineFirmanteReverso, "INE reverso del firmante");
+        if (!firmaDinah.hay())
+          throw Error("Dibuja o carga la firma del firmante.");
+        return datos;
+      }
+      function bloquearPerfil(valor) {
+        for (const id of [
+          "modoFirmante",
+          ...CAMPOS_FIRMANTE.map((k) => k + "Firmante"),
+          "inePrestadoraFrente",
+          "inePrestadoraReverso",
+          "firmaPrestadoraArchivo",
+          "guardarPerfilFirmante",
+          "borrarAdmin",
+        ])
+          $(id).disabled = valor;
+        $("firmaAdmin").style.pointerEvents = valor ? "none" : "auto";
+      }
+      async function aplicarPerfil(perfil) {
+        firmaDinah.borrar();
+        $("inePrestadoraFrente").value = "";
+        $("inePrestadoraReverso").value = "";
+        $("firmaPrestadoraArchivo").value = "";
+        ineFirmanteFrente = perfil?.frente || null;
+        ineFirmanteReverso = perfil?.reverso || null;
+        const base = perfil?.datos || {
+          nombre: "DINAH IRASEMA GÓMEZ MONTOYA",
+          rfc: "GOMD700629RZ7",
+          curp: "",
+          domicilio:
+            "Sierravista 284, Lindavista Norte, Gustavo A. Madero, Ciudad de México",
+          cargo: "Titular y prestadora",
+        };
+        for (const campo of CAMPOS_FIRMANTE)
+          $(campo + "Firmante").value = base[campo] || "";
+        for (const [blob, vista, etiqueta] of [
+          [
+            ineFirmanteFrente,
+            "vistaPrestadoraFrente",
+            "INE frente del firmante",
+          ],
+          [
+            ineFirmanteReverso,
+            "vistaPrestadoraReverso",
+            "INE reverso del firmante",
+          ],
+        ]) {
+          $(vista).replaceChildren();
+          if (blob) vistaArchivo(blob, vista, etiqueta);
+        }
+        if (perfil?.png) await firmaDinah.cargar(perfil.png);
+        $("revisadoAdmin").checked = false;
+      }
+      async function cargarPerfilFirmante() {
+        try {
+          const snap = await getDoc(doc(dbAdmin, "perfilesFirma", ADMIN_UID));
+          if (!snap.exists()) {
+            mensaje(
+              "estadoPerfilFirmante",
+              "Carga tu INE y firma una vez; después pulsa Guardar mis datos predeterminados.",
+            );
+            return;
+          }
+          const d = snap.data();
+          const [frente, reverso, firma] = await Promise.all([
+            recuperarArchivo(
+              dbAdmin,
+              ADMIN_UID,
+              d.archivos.frente,
+              "perfilesFirma",
+            ),
+            recuperarArchivo(
+              dbAdmin,
+              ADMIN_UID,
+              d.archivos.reverso,
+              "perfilesFirma",
+            ),
+            recuperarArchivo(
+              dbAdmin,
+              ADMIN_UID,
+              d.archivos.firma,
+              "perfilesFirma",
+            ),
+          ]);
+          perfilPredeterminado = {
+            datos: d.datos,
+            frente,
+            reverso,
+            png:
+              "data:image/png;base64," +
+              bytesBase64(new Uint8Array(await firma.arrayBuffer())),
+          };
+          if ($("modoFirmante").value === "titular")
+            await aplicarPerfil(perfilPredeterminado);
+          mensaje(
+            "estadoPerfilFirmante",
+            "Tus datos, INE y firma predeterminados están cargados.",
+            "exito",
+          );
+        } catch (e) {
+          mensaje(
+            "estadoPerfilFirmante",
+            "No se pudo cargar el perfil. Publica las reglas actualizadas de Firestore y vuelve a entrar. " +
+              errorAmigable(e),
+            "error",
+          );
+        }
+      }
+      $("modoFirmante").onchange = async () => {
+        if (ocupadoAdmin || guardandoPerfil) return;
+        if ($("modoFirmante").value === "titular")
+          await aplicarPerfil(perfilPredeterminado);
+        else {
+          await aplicarPerfil(null);
+          for (const campo of CAMPOS_FIRMANTE) $(campo + "Firmante").value = "";
+          mensaje(
+            "estadoPerfilFirmante",
+            "Captura los datos, INE y firma de la persona autorizada para este contrato. Tu perfil predeterminado se conserva.",
+          );
+        }
+        $("guardarPerfilFirmante").hidden =
+          $("modoFirmante").value !== "titular";
+      };
+      for (const [id, vista, lado] of [
+        ["inePrestadoraFrente", "vistaPrestadoraFrente", "frente"],
+        ["inePrestadoraReverso", "vistaPrestadoraReverso", "reverso"],
+      ])
+        $(id).onchange = () => {
+          try {
+            const f = $(id).files[0];
+            validarArchivo(f, "INE " + lado + " del firmante");
+            if (lado === "frente") ineFirmanteFrente = f;
+            else ineFirmanteReverso = f;
+            vistaArchivo(f, vista, "INE " + lado);
+            $("revisadoAdmin").checked = false;
+          } catch (e) {
+            $(id).value = "";
+            mensaje("estadoPerfilFirmante", errorAmigable(e), "error");
+          }
+        };
+      $("firmaPrestadoraArchivo").onchange = async () => {
+        try {
+          const f = $("firmaPrestadoraArchivo").files[0];
+          validarArchivo(f, "Firma");
+          if (f.type !== "image/png")
+            throw Error("La firma debe ser una imagen PNG.");
+          await firmaDinah.cargar(
+            "data:image/png;base64," +
+              bytesBase64(new Uint8Array(await f.arrayBuffer())),
+          );
+          $("revisadoAdmin").checked = false;
+        } catch (e) {
+          mensaje("estadoPerfilFirmante", errorAmigable(e), "error");
+        }
+      };
+      $("guardarPerfilFirmante").onclick = async () => {
+        if (
+          ocupadoAdmin ||
+          guardandoPerfil ||
+          $("modoFirmante").value !== "titular"
+        )
+          return;
+        guardandoPerfil = true;
+        bloquearPerfil(true);
+        try {
+          await autenticarAdmin();
+          const datos = datosFirmante(),
+            png = firmaDinah.png();
+          const firma = new Blob([base64Bytes(png.split(",")[1])], {
+            type: "image/png",
+          });
+          mensaje(
+            "estadoPerfilFirmante",
+            "Guardando tu perfil predeterminado…",
+          );
+          const version = crypto.randomUUID();
+          const archivos = {};
+          for (const [nombre, blob] of [
+            ["frente", ineFirmanteFrente],
+            ["reverso", ineFirmanteReverso],
+            ["firma", firma],
+          ])
+            archivos[nombre] = await guardarArchivo(
+              dbAdmin,
+              ADMIN_UID,
+              ADMIN_UID,
+              version + "_" + nombre,
+              blob,
+              "perfilesFirma",
+            );
+          await setDoc(doc(dbAdmin, "perfilesFirma", ADMIN_UID), {
+            uid: ADMIN_UID,
+            datos,
+            archivos,
+            actualizadoEnServidor: serverTimestamp(),
+          });
+          perfilPredeterminado = {
+            datos,
+            frente: ineFirmanteFrente,
+            reverso: ineFirmanteReverso,
+            png,
+          };
+          mensaje(
+            "estadoPerfilFirmante",
+            "Perfil guardado. Se cargará automáticamente al entrar al panel.",
+            "exito",
+          );
+        } catch (e) {
+          mensaje("estadoPerfilFirmante", errorAmigable(e), "error");
+        } finally {
+          guardandoPerfil = false;
+          bloquearPerfil(false);
+        }
+      };
+      async function listaAdmin() {
+        const snap = await getDocs(collection(dbAdmin, "expedientesFirma")),
+          lista = snap.docs.map((d) => d.data()).filter((d) => d.cargaCompleta);
+        lista.sort((a, b) =>
+          (b.evidencia?.cliente?.payload?.fechaHoraIso || "").localeCompare(
+            a.evidencia?.cliente?.payload?.fechaHoraIso || "",
+          ),
+        );
+        const s = $("listaExpedientes");
+        s.replaceChildren(new Option("Selecciona un expediente", ""));
+        for (const e of lista)
+          s.append(
+            new Option(
+              `${e.estado === "firmado_por_ambas_partes" ? "FIRMADO POR AMBOS" : "PENDIENTE DE DINAH"} — ${e.contratante?.nombre || "Cliente"} — ${e.expedienteId}`,
+              e.expedienteId,
+            ),
+          );
+        $("resumenAdmin").textContent =
+          `${lista.length} expedientes completos · ${lista.filter((e) => e.estado !== "firmado_por_ambas_partes").length} pendientes de firma.`;
+      }
+      async function autenticarAdmin() {
+        if (authAdmin.currentUser?.uid !== ADMIN_UID)
+          throw Error(
+            "Esta cuenta no corresponde al usuario administrador autorizado.",
+          );
+      }
+      $("formLogin").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        $("entrarAdmin").disabled = true;
+        try {
+          await setPersistence(authAdmin, browserSessionPersistence);
+          await signInWithEmailAndPassword(
+            authAdmin,
+            $("emailAdmin").value.trim(),
+            $("passwordAdmin").value,
+          );
+          if (authAdmin.currentUser.uid !== ADMIN_UID) {
+            await signOut(authAdmin);
+            throw Error(
+              "Esta cuenta no está autorizada para el panel de Dinah.",
+            );
+          }
+          $("passwordAdmin").value = "";
+          await listaAdmin();
+          await cargarPerfilFirmante();
+          $("loginAdmin").hidden = true;
+          $("contenidoAdmin").hidden = false;
+          mensaje("estadoLogin", "");
+        } catch (err) {
+          mensaje("estadoLogin", errorAmigable(err), "error");
+        } finally {
+          $("entrarAdmin").disabled = false;
+        }
+      });
+      $("actualizarAdmin").onclick = async () => {
+        if (ocupadoAdmin) return;
+        try {
+          await autenticarAdmin();
+          await listaAdmin();
+        } catch (e) {
+          mensaje("estadoAdmin", errorAmigable(e), "error");
+        }
+      };
+      $("cerrarAdmin").onclick = async () => {
+        if (ocupadoAdmin || guardandoPerfil) return;
+        await signOut(authAdmin);
+        seleccionVersion++;
+        expedienteAdmin = null;
+        blobAdminCliente = null;
+        blobAdminFinal = null;
+        pendienteAdmin = null;
+        perfilPredeterminado = null;
+        ineClienteFrenteAdmin = null;
+        ineClienteReversoAdmin = null;
+        $("modoFirmante").value = "titular";
+        await aplicarPerfil(null);
+        firmaDinah.borrar();
+        $("datosAdmin").replaceChildren();
+        $("ineAdminFrente").replaceChildren();
+        $("ineAdminReverso").replaceChildren();
+        $("pdfAdmin").src = "about:blank";
+        $("loginAdmin").hidden = false;
+        $("contenidoAdmin").hidden = true;
+      };
+      $("listaExpedientes").onchange = async () => {
+        if (ocupadoAdmin) return;
+        bloquearPerfil(false);
+        const version = ++seleccionVersion,
+          id = $("listaExpedientes").value;
+        expedienteAdmin = null;
+        blobAdminCliente = null;
+        blobAdminFinal = null;
+        pendienteAdmin = null;
+
+        $("revisadoAdmin").checked = false;
+        $("firmarAdmin").disabled = true;
+        $("descargarClienteAdmin").disabled = true;
+        $("descargarFinalAdmin").hidden = true;
+        $("reciboAdmin").hidden = true;
+        $("datosAdmin").replaceChildren();
+        $("ineAdminFrente").replaceChildren();
+        $("ineAdminReverso").replaceChildren();
+        $("pdfAdmin").src = "about:blank";
+        if (!id) return;
+        try {
+          await autenticarAdmin();
+          mensaje("estadoAdmin", "Cargando y verificando contrato e INE…");
+          const snap = await getDoc(doc(dbAdmin, "expedientesFirma", id)),
+            e = snap.data();
+          if (!e?.cargaCompleta) throw Error("El expediente no está completo.");
+          await comprobarEvidencia(e);
+          const [pdf, frente, reverso, firmaVerificada] = await Promise.all([
+            recuperarArchivo(dbAdmin, id, e.archivos.contratoCliente),
+            recuperarArchivo(dbAdmin, id, e.archivos.ineFrente),
+            recuperarArchivo(dbAdmin, id, e.archivos.ineReverso),
+            recuperarArchivo(dbAdmin, id, e.archivos.firmaCliente),
+          ]);
+          if (version !== seleccionVersion) return;
+          expedienteAdmin = e;
+          blobAdminCliente = pdf;
+          for (const k of CAMPOS) {
+            const div = document.createElement("div"),
+              strong = document.createElement("strong"),
+              span = document.createElement("span");
+            strong.textContent =
+              document.querySelector(`label[for="${k}"]`)?.textContent || k;
+            span.textContent = e.contratante[k] || "";
+            div.append(strong, span);
+            $("datosAdmin").append(div);
+          }
+          ineClienteFrenteAdmin = frente;
+          ineClienteReversoAdmin = reverso;
+          vistaArchivo(frente, "ineAdminFrente", "INE frente");
+          vistaArchivo(reverso, "ineAdminReverso", "INE reverso");
+          $("evidenciaAdmin").textContent = JSON.stringify(
+            e.evidencia.cliente,
+            null,
+            2,
+          );
+          $("evidenciaAdmin").style.whiteSpace = "pre-wrap";
+          $("descargarClienteAdmin").disabled = false;
+          $("reciboAdmin").hidden = false;
+          const final = e.estado === "firmado_por_ambas_partes";
+          $("zonaFirmaAdmin").hidden = final;
+          if (final) {
+            const f = await recuperarArchivo(
+              dbAdmin,
+              id,
+              e.archivosFinales.contratoFinal,
+            );
+            if (version !== seleccionVersion) return;
+            blobAdminFinal = f;
+            $("descargarFinalAdmin").hidden = false;
+            establecerPdf("pdfAdmin", f);
+            mensaje(
+              "estadoAdmin",
+              "Contrato firmado por ambas partes. Archivos y cadenas verificados.",
+              "exito",
+            );
+          } else {
+            establecerPdf("pdfAdmin", pdf);
+            $("firmarAdmin").disabled = false;
+            mensaje(
+              "estadoAdmin",
+              "Archivos y cadena del cliente verificados. Revisa el expediente antes de agregar tu firma.",
+              "exito",
+            );
+          }
+        } catch (err) {
+          if (version === seleccionVersion)
+            mensaje("estadoAdmin", errorAmigable(err), "error");
+        }
+      };
+      $("descargarClienteAdmin").onclick = () => {
+        if (blobAdminCliente)
+          descargar(
+            blobAdminCliente,
+            "Contrato_cliente_" + expedienteAdmin.expedienteId + ".pdf",
+          );
+      };
+      $("descargarFinalAdmin").onclick = () => {
+        if (blobAdminFinal)
+          descargar(
+            blobAdminFinal,
+            "Contrato_final_" + expedienteAdmin.expedienteId + ".pdf",
+          );
+      };
+      $("reciboAdmin").onclick = () => {
+        if (expedienteAdmin) recibo(expedienteAdmin);
+      };
+      $("firmarAdmin").onclick = async () => {
+        if (ocupadoAdmin || guardandoPerfil || !expedienteAdmin) return;
+        ocupadoAdmin = true;
+        bloquearPerfil(true);
+        $("firmarAdmin").disabled = true;
+        $("listaExpedientes").disabled = true;
+        try {
+          await autenticarAdmin();
+          if (!pendienteAdmin) {
+            if (!$("revisadoAdmin").checked)
+              throw Error("Confirma que revisaste y aceptas el contrato.");
+            const firmante = datosFirmante();
+            const ref = doc(
+                dbAdmin,
+                "expedientesFirma",
+                expedienteAdmin.expedienteId,
+              ),
+              current = await getDoc(ref);
+            if (current.data().estado === "firmado_por_ambas_partes")
+              throw Error(
+                "Este contrato ya fue firmado por ambas partes. Actualiza el expediente.",
+              );
+            mensaje("estadoAdmin", "Solicitando tu ubicación para la firma…");
+            const geo = await ubicacion(),
+              png = firmaDinah.png(),
+              payload = {
+                expedienteId: expedienteAdmin.expedienteId,
+                nombre: firmante.nombre,
+                rfc: firmante.rfc,
+                curp: firmante.curp,
+                domicilio: firmante.domicilio,
+                cargo: firmante.cargo,
+                modoFirmante: firmante.modo,
+                hashIneFrente: await sha256(ineFirmanteFrente),
+                hashIneReverso: await sha256(ineFirmanteReverso),
+                uidFirebase: ADMIN_UID,
+                fechaHoraIso: new Date().toISOString(),
+                geolocalizacion: geo,
+                zonaHoraria: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                idioma: navigator.language,
+                userAgent: navigator.userAgent,
+                aceptacionExpresa: true,
+                revisionExpediente: true,
+                cadenaAnterior: expedienteAdmin.evidencia.cliente.cadena,
+                hashContratoCliente:
+                  expedienteAdmin.hashesSha256.contratoCliente,
+                hashFirma: await sha256(base64Bytes(png.split(",")[1])),
+              };
+            const evidencia = {
+                payload,
+                cadena: await sha256(canonico(payload)),
+              },
+              blob = await crearPdfFinal(
+                blobAdminCliente,
+                expedienteAdmin.contratante,
+                expedienteAdmin,
+                {
+                  ...evidencia,
+                  png,
+                  frente: ineFirmanteFrente,
+                  reverso: ineFirmanteReverso,
+                  clienteFrente: ineClienteFrenteAdmin,
+                  clienteReverso: ineClienteReversoAdmin,
+                },
+              );
+            pendienteAdmin = {
+              id: expedienteAdmin.expedienteId,
+              blob,
+              firma: new Blob([base64Bytes(png.split(",")[1])], {
+                type: "image/png",
+              }),
+              evidencia,
+              hash: await sha256(blob),
+              nombreArchivo:
+                "contrato_final_" + crypto.randomUUID().slice(0, 8),
+            };
+          }
+          const t = pendienteAdmin;
+          mensaje("estadoAdmin", "Guardando el contrato final en Firebase…");
+          const archivo = await guardarArchivo(
+              dbAdmin,
+              t.id,
+              expedienteAdmin.uid,
+              t.nombreArchivo,
+              t.blob,
+            ),
+            firmaPrestadora = await guardarArchivo(
+              dbAdmin,
+              t.id,
+              expedienteAdmin.uid,
+              t.nombreArchivo.replace("contrato_final_", "firma_prestadora_"),
+              t.firma,
+            ),
+            ref = doc(dbAdmin, "expedientesFirma", t.id);
+          await runTransaction(dbAdmin, async (tx) => {
+            const s = await tx.get(ref),
+              d = s.data();
+            if (d.estado === "firmado_por_ambas_partes") {
+              if (d.hashesSha256.contratoFinal === t.hash) return;
+              throw Error(
+                "Otra sesión ya guardó un contrato final. Actualiza el expediente.",
+              );
+            }
+            if (
+              d.hashesSha256.contratoCliente !==
+              t.evidencia.payload.hashContratoCliente
+            )
+              throw Error(
+                "El contrato del cliente cambió. Recarga el expediente.",
+              );
+            tx.update(ref, {
+              estado: "firmado_por_ambas_partes",
+              firmaComercializadora: t.evidencia,
+              archivosFinales: { contratoFinal: archivo, firmaPrestadora },
+              hashesSha256: { ...d.hashesSha256, contratoFinal: t.hash },
+              finalizadoEnServidor: serverTimestamp(),
+            });
+          });
+          expedienteAdmin = (await getDoc(ref)).data();
+          blobAdminFinal = t.blob;
+          pendienteAdmin = null;
+          establecerPdf("pdfAdmin", blobAdminFinal);
+          $("descargarFinalAdmin").hidden = false;
+          $("zonaFirmaAdmin").hidden = true;
+          mensaje(
+            "estadoAdmin",
+            "Contrato con ambas firmas guardado correctamente. Ya puedes descargar el PDF final y su evidencia.",
+            "exito",
+          );
+          await listaAdmin();
+          $("listaExpedientes").value = expedienteAdmin.expedienteId;
+        } catch (err) {
+          mensaje(
+            "estadoAdmin",
+            errorAmigable(err) +
+              (pendienteAdmin
+                ? "\nPuedes reintentar el guardado sin volver a firmar."
+                : ""),
+            "error",
+          );
+          $("firmarAdmin").textContent = pendienteAdmin
+            ? "Reintentar guardado final"
+            : "Generar y guardar contrato final";
+        } finally {
+          ocupadoAdmin = false;
+          bloquearPerfil(Boolean(pendienteAdmin));
+          $("listaExpedientes").disabled = false;
+          $("firmarAdmin").disabled =
+            !expedienteAdmin ||
+            expedienteAdmin.estado === "firmado_por_ambas_partes";
+        }
+      };
+      window.addEventListener("beforeunload", (e) => {
+        if (
+          ocupadoCliente ||
+          pendienteCarga ||
+          ocupadoAdmin ||
+          pendienteAdmin
+        ) {
+          e.preventDefault();
+          e.returnValue = "";
+        }
+      });
+      mostrarTexto();
+      if (ultimoId) {
+        $("ultimoId").textContent = ultimoId;
+        $("consultaAnterior").hidden = false;
+      }
+      // Detecta fallo de inicialización del módulo sin mostrar una página que aparenta guardar.
+      window.__dgInicializado = true;
+    </script>
+    <script>
+      setTimeout(() => {
+        if (!window.__dgInicializado) {
+          const el = document.getElementById("estadoCliente");
+          el.className = "estado error";
+          el.textContent =
+            "No se cargó la conexión con Firebase. Revisa internet y abre de nuevo la página. Para firmar, utiliza el enlace HTTPS publicado.";
+        }
+      }, 15000);
+    </script>
+  </body>
+</html>
