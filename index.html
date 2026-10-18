@@ -382,6 +382,22 @@
         Contrato de cliente
       </button>
     </header>
+
+<style>
+.dg-tabs{display:flex;gap:10px;padding:14px max(20px,calc((100vw - 1480px)/2));background:#fff;border-bottom:1px solid #cbd6e5}.dg-tabs button[aria-selected="false"]{background:#e9eff9;color:#20357e}#dgAnexos{max-width:1480px;margin:auto;padding:24px}#dgAnexos[hidden]{display:none}.dg-layout{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:24px}.dg-card{background:white;border:1px solid #cbd6e5;border-radius:14px;padding:24px}.dg-card h1{margin:8px 0}.dg-card input,.dg-card select,.dg-card textarea{width:100%;padding:10px;border:1px solid #cbd6e5;border-radius:7px;margin:5px 0 12px;font:inherit}.dg-card label{display:block;font-weight:600}.dg-row{border:1px solid #dce4ef;border-radius:9px;padding:12px;margin:12px 0}.dg-paper{background:white;padding:40px;box-shadow:0 8px 25px #17304c12;min-height:650px}.dg-paper h2{color:#20357e}.dg-paper p{line-height:1.7}.dg-values{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:20px 0}.dg-values div{padding:12px;background:#eef3f9;border-radius:8px}.dg-values strong{display:block}.dg-status{padding:12px;border-radius:8px;background:#fff4db;color:#715100;margin:15px 0}.dg-signatures{display:flex;gap:30px;margin-top:55px}.dg-signatures div{flex:1;border-top:1px solid #777;padding-top:10px}.dg-actions{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.dg-muted{color:#60718a;font-size:13px}.dg-paper table{width:100%;border-collapse:collapse}.dg-paper td,.dg-paper th{padding:12px 8px;border-bottom:1px solid #dce4ef;text-align:left}@media(max-width:850px){.dg-layout{grid-template-columns:1fr}.dg-paper{padding:22px}.dg-values{grid-template-columns:1fr}.dg-signatures{flex-direction:column;gap:45px}}@media print{body>*{display:none!important}#dgAnexos{display:block!important;padding:0}#dgAnexos .dg-editor,#dgAnexos .dg-preview-actions{display:none!important}.dg-layout{display:block}.dg-paper{box-shadow:none;padding:0}.dg-muted.demo-note{display:none}}
+</style>
+<div class="dg-tabs" role="tablist" aria-label="Documentos"><button id="dgTabContrato" role="tab" aria-selected="true">Contrato de cliente</button><button id="dgTabAnexo" role="tab" aria-selected="false">Anexos de pagos</button></div>
+<section id="dgAnexos" hidden>
+<div class="dg-layout"><div class="dg-card dg-editor"><span class="etiqueta">ANEXOS DE PAGOS</span><h1>Preparar un anexo</h1><p class="dg-muted">Busca un contrato registrado para preparar su anexo de pagos.</p>
+<label for="axContrato">Número de contrato</label><input id="axContrato" placeholder="Número completo del contrato" autocomplete="off"><div class="dg-actions"><button id="axBuscar">Buscar contrato</button><button id="axAcceso" class="secundario">Acceso de Dinah</button></div><p id="axBusquedaEstado" role="status" class="dg-muted">Ingresa el número de contrato.</p>
+<label for="axCliente">Contratante</label><input id="axCliente" readonly><label for="axActivo">Dirección del activo</label><textarea id="axActivo" rows="2" readonly></textarea><label for="axTotal">Precio total (MXN)</label><input id="axTotal" readonly><label for="axNumero">Número de anexo</label><input id="axNumero" readonly><p class="dg-muted">El primer anexo es el 01. Su número se confirma al guardarlo; editar el borrador conserva el mismo número.</p><label for="axFecha">Fecha del contrato</label><input id="axFecha" type="date" readonly><p id="axSource" class="dg-muted"></p>
+<div class="dg-values"><div>Total<strong id="axVT"></strong></div><div>Inicial · 30 %<strong id="axVI"></strong></div><div>Saldo<strong id="axVS"></strong></div></div>
+<h2>Calendario del saldo</h2><div id="axPagos"></div><button id="axAgregar" class="secundario">+ Agregar pago</button><div id="axValidacion" class="dg-status" aria-live="polite"></div><div class="dg-actions"><button id="axGuardar">Guardar borrador en Firebase</button><button id="axRestaurar" class="secundario">Cargar borrador</button></div><p id="axMensaje" role="status" class="dg-muted"></p>
+</div><div><div class="dg-preview-actions"><h2>Vista previa del anexo</h2><div class="dg-actions"><button id="axImprimir">Imprimir borrador</button><button id="axVistaCliente" class="secundario">Ver como comprador</button></div><p class="dg-muted demo-note">Prepara el borrador, guárdalo y selecciona el anexo en el historial para enviarlo a firma. El contrato original permanece intacto.</p></div><article class="dg-paper" id="axDocumento"></article></div></div>
+<style>.af-sign{width:100%;height:140px;border:1px solid #cbd6e5;border-radius:9px;background:#fff}.af-hist{margin-top:24px}.af-check{display:flex;align-items:flex-start;gap:10px;margin:15px 0}.af-check input{width:auto;margin:4px 0}.af-grid{display:grid;grid-template-columns:300px 1fr;gap:22px}#afTextoAdmin,#afTextoCliente{overflow-wrap:anywhere}#afPortalCliente{max-width:1250px;margin:25px auto;padding:20px}#afLink{width:100%;padding:10px}#afHistorial{max-height:400px;overflow:auto}#afPortalCliente[hidden]{display:none} [hidden]{display:none!important}@media(max-width:850px){.af-grid{grid-template-columns:1fr}}@media print{.af-hist,#afPortalCliente{display:none!important}}</style>
+<section class="dg-card af-hist"><h2>Historial y firmas del anexo</h2><div class="dg-actions"><button id="afActualizar" class="af-action">Actualizar historial</button><button id="afNuevo" class="secundario af-action">Preparar siguiente anexo</button></div><p id="afEstadoAdmin" role="status" class="dg-muted">Guarda el borrador y actualiza el historial.</p><div class="af-grid"><div id="afHistorial"></div><div><h3 id="afSeleccionado">Selecciona un anexo</h3><p id="afAvisoAnterior"></p><div class="dg-actions"><button id="afEnviar" class="af-action" hidden>Cerrar borrador y generar enlace de firma</button><button id="afDescargarAdmin" class="secundario af-action" hidden>Descargar PDF</button><button id="afEvidenciaAdmin" class="secundario af-action" hidden>Descargar evidencia</button></div><div id="afLinkBox" hidden><label for="afLink">Enlace del cliente: contrato e historial de anexos</label><input id="afLink" readonly><button id="afCopiar" class="secundario af-action">Copiar enlace</button></div><article id="afTextoAdmin" hidden></article><div id="afFirmaAdminBox" hidden><h3>Firma de Dinah</h3><canvas id="afFirmaDinah" class="af-sign" width="700" height="180"></canvas><button id="afBorrarDinah" class="secundario" type="button">Borrar firma</button><label class="af-check"><input id="afAceptoDinah" type="checkbox">He revisado el anexo y acepto su contenido.</label><button id="afFirmarDinah" class="af-action">Firmar y guardar anexo final</button></div></div></div></section>
+</section>
+
     <main id="portalCliente">
       <div class="columnas">
         <section class="tarjeta">
@@ -808,6 +824,9 @@
         </div>
       </section>
     </main>
+
+<section id="afPortalCliente" hidden><div class="dg-card"><span class="etiqueta">EXPEDIENTE DEL CLIENTE</span><h1>Tu contrato y anexos de pagos</h1><p id="afTituloContrato"></p><div class="dg-actions"><button id="afContratoOriginal" class="af-action">Descargar contrato original</button><button id="afActualizarCliente" class="secundario af-action">Actualizar documentos</button></div><p id="afEstadoCliente" role="status">Cargando acceso…</p><label for="afListaCliente">Historial de anexos</label><select id="afListaCliente"></select><div class="dg-actions"><button id="afDescargarCliente" class="af-action">Descargar anexo PDF</button><button id="afEvidenciaCliente" class="secundario af-action">Descargar evidencia</button></div><article id="afTextoCliente" class="dg-paper"></article><div id="afFirmaClienteBox" hidden><h2>Firma del contratante</h2><p>Revisa el documento completo antes de firmar. Al firmar se conservarán tu firma, fecha, hora, ubicación y evidencia de integridad vinculadas a este anexo.</p><canvas id="afFirmaCliente" class="af-sign" width="700" height="180"></canvas><button id="afBorrarCliente" class="secundario" type="button">Borrar firma</button><label class="af-check"><input type="checkbox" id="afAceptoCliente">He leído el anexo y acepto expresamente su calendario de pagos.</label><button id="afFirmarCliente" class="af-action">Firmar anexo</button></div></div></section>
+
     <footer>Dinah Gómez · Expedientes de contratos de clientes</footer>
     <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <script>
@@ -3112,6 +3131,148 @@
         $("ultimoId").textContent = ultimoId;
         $("consultaAnterior").hidden = false;
       }
+
+      // Anexos independientes: ninguna escritura modifica el documento del contrato.
+      window.dgAnexosFirebase = {
+        async buscar(numero) {
+          await autenticarAdmin();
+          let snap = await getDoc(doc(dbAdmin, "expedientesFirma", numero));
+          if (!snap.exists()) {
+            const r = await getDocs(query(collection(dbAdmin, "expedientesFirma"), where("contratante.numero", "==", numero)));
+            if (r.size !== 1) throw Error(r.empty ? "No se encontró un contrato con ese número." : "Hay varios contratos con ese número. Revisa el expediente antes de continuar.");
+            snap = r.docs[0];
+          }
+          const e = snap.data(), d = e.contratante;
+          if (!e.cargaCompleta || !d || !e.evidencia?.cliente?.cadena) throw Error("El expediente no tiene la carga y evidencia de firma completas.");
+          if (!d.nombre || !d.direccionActivo || importeNumero(d.precio) === null) throw Error("El contrato no contiene nombre, dirección o precio válidos.");
+          const iso = e.evidencia.cliente.payload?.fechaHoraIso;
+          if (!iso || !Number.isFinite(Date.parse(iso))) throw Error("El contrato no contiene una fecha de firma válida.");
+          const fechaContrato = new Intl.DateTimeFormat('en-CA',{timeZone:e.evidencia.cliente.payload.zonaHoraria || 'America/Mexico_City',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(iso));
+          return {id:snap.id, contratante:{...d}, fechaContrato, estado:e.estado, cadenaContrato:e.evidencia.cliente.cadena, hashContrato:e.hashesSha256?.contratoCliente || ""};
+        },
+        async cargarBorrador(id) {
+          await autenticarAdmin();
+          const r=await getDocs(collection(dbAdmin,"expedientesFirma",id,"anexos"));
+          const pendientes=r.docs.map(s=>({id:s.id,...s.data()})).filter(a=>a.estado==='borrador');
+          pendientes.sort((a,b)=>(b.numero||0)-(a.numero||0));
+          return pendientes[0] || null;
+        },
+        async guardar(c, entrada) {
+          await autenticarAdmin();
+          const p=entrada.pagos.map(x=>({importe:Math.round(importeNumero(x.importe)*100)/100,tipo:x.tipo,fecha:x.tipo==='fecha'?x.fecha:'',condicion:x.tipo==='condicion'?x.condicion.trim():''}));
+          const totalCent=Math.round(importeNumero(c.contratante.precio)*100), inicialCent=Math.round(totalCent*.30);
+          if(!p.length || p.some(x=>!Number.isFinite(x.importe)||x.importe<=0||!['fecha','condicion'].includes(x.tipo)||(x.tipo==='fecha'?(!/^\d{4}-\d{2}-\d{2}$/.test(x.fecha)||x.fecha<c.fechaContrato):!x.condicion)))throw Error('Revisa importes y vencimientos.');
+          if(p.reduce((s,x)=>s+Math.round(x.importe*100),0)!==totalCent-inicialCent)throw Error('La suma de los pagos no coincide con el saldo del contrato.');
+          let id=entrada.anexoId, numero;
+          if(!id){const lista=await getDocs(collection(dbAdmin,'expedientesFirma',c.id,'anexos'));if(lista.docs.some(s=>s.data().estado==='borrador'))throw Error('Ya existe un borrador. Pulsa Cargar borrador para continuar con el mismo anexo.');numero=1+Math.max(0,...lista.docs.map(s=>Number(s.data().numero)||0));id='ANEXO-'+String(numero).padStart(3,'0');}
+          const refAnexo=doc(dbAdmin,'expedientesFirma',c.id,'anexos',id);
+          return runTransaction(dbAdmin,async tx=>{
+            const original=await tx.get(doc(dbAdmin,'expedientesFirma',c.id));
+            const existente=await tx.get(refAnexo);
+            if(!original.exists()||original.data().evidencia?.cliente?.cadena!==c.cadenaContrato)throw Error('El contrato de origen cambió. Vuelve a buscarlo.');
+            if(existente.exists()){
+              const a=existente.data();
+              if(!entrada.anexoId)throw Error('Otro usuario creó este anexo. Carga el borrador para continuar.');
+              if(a.estado!=='borrador')throw Error('El anexo ya está cerrado y no puede modificarse.');
+              if(a.revision!==entrada.revision)throw Error('El borrador cambió en otra sesión. Vuelve a cargarlo.');
+              numero=a.numero;
+            }else if(entrada.anexoId)throw Error('El borrador ya no existe. Vuelve a cargarlo.');
+            const revision=(existente.exists()?existente.data().revision:0)+1;
+            const datos={numero,revision,estado:'borrador',tipo:'anexo_pagos',contratoId:c.id,numeroContrato:c.contratante.numero||c.id,contratante:c.contratante.nombre,direccionActivo:c.contratante.direccionActivo,fechaContrato:c.fechaContrato,precioTotal:totalCent/100,pagoInicial:inicialCent/100,saldo:(totalCent-inicialCent)/100,pagos:p,cadenaContrato:c.cadenaContrato,hashContrato:c.hashContrato,actualizadoPor:authAdmin.currentUser.uid,actualizadoEn:serverTimestamp()};
+            if(!existente.exists())datos.creadoEn=serverTimestamp();
+            tx.set(refAnexo,datos,{merge:true});
+            return {id,numero,revision};
+          });
+        }
+      };
+
+      // Ciclo completo de anexos. Documentos del contrato original: solo lectura.
+      const AX = window.dgAnexosFirebase;
+      const axAdmin = async()=>{await autenticarAdmin();};
+      const axRef=(c,id)=>doc(dbAdmin,'expedientesFirma',c,'anexos',id);
+      const portalRef=(database,t,id)=>id?doc(database,'anexoPortales',t,'anexos',id):doc(database,'anexoPortales',t);
+      const axTerms=a=>({version:'DG-ANEXOS-1',contratoId:a.contratoId,numeroContrato:a.numeroContrato,contratante:a.contratante,direccionActivo:a.direccionActivo,fechaContrato:a.fechaContrato,numero:a.numero,precioTotal:a.precioTotal,pagoInicial:a.pagoInicial,saldo:a.saldo,pagos:a.pagos,sustituye:a.sustituye||null,hashAnexoAnterior:a.hashAnexoAnterior||null,cadenaContrato:a.cadenaContrato,hashContrato:a.hashContrato});
+      async function axVerify(a){
+        if(!a.terminos || await sha256(canonico(a.terminos))!==a.hashTerminos)throw Error('El contenido del anexo no coincide con su huella de integridad.');
+        for(const k of ['firmaCliente','firmaPrestadora'])if(a[k]){
+          const f=a[k];if(await sha256(canonico(f.payload))!==f.cadena || f.payload.hashTerminos!==a.hashTerminos || await sha256(base64Bytes(f.png.split(',')[1]))!==f.payload.hashFirma)throw Error('La evidencia de firma no coincide con el documento.');
+        }
+        if(a.firmaPrestadora?.payload.cadenaCliente!==a.firmaCliente?.cadena)if(a.firmaPrestadora)throw Error('Las cadenas de ambas firmas no están vinculadas.');
+      }
+      async function axEvidence(a,png,rol){
+        const g=await ubicacion();const user=rol==='cliente'?await clienteAuth():authAdmin.currentUser;
+        const payload={anexoId:a.id,contratoId:a.terminos.contratoId,numeroAnexo:a.terminos.numero,rol,uidFirebase:user.uid,fechaHoraIso:new Date().toISOString(),zonaHoraria:Intl.DateTimeFormat().resolvedOptions().timeZone,geolocalizacion:g,userAgent:navigator.userAgent,aceptacionExpresa:true,hashTerminos:a.hashTerminos,hashFirma:await sha256(base64Bytes(png.split(',')[1])),hashContrato:a.terminos.hashContrato,hashAnexoAnterior:a.terminos.hashAnexoAnterior,cadenaCliente:rol==='prestadora'?a.firmaCliente.cadena:null};
+        return {payload,cadena:await sha256(canonico(payload)),png};
+      }
+      function axText(t){
+        if(Array.isArray(t.parrafos))return [...t.parrafos];
+        const mx=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(n);
+        const fecha=x=>new Date(x+'T12:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'});
+        return ['ANEXO DE PAGOS '+String(t.numero).padStart(2,'0'),'Contrato: '+t.numeroContrato,'Contratante: '+t.contratante,'Prestadora: DINAH IRASEMA GÓMEZ MONTOYA','Activo: '+t.direccionActivo,'El presente anexo forma parte integrante del contrato identificado anteriormente y establece las condiciones de pago de la operación.',...(t.sustituye?['Una vez firmado por ambas partes, el presente anexo sustituye el calendario de pagos del Anexo '+t.sustituye.numero+'. Las demás condiciones del contrato permanecen vigentes.']:[]),'PRECIO TOTAL PACTADO',mx(t.precioTotal)+' M.N. ('+dineroLetra(t.precioTotal)+').','PAGO INICIAL',mx(t.pagoInicial)+' M.N., equivalente al 30 % del precio total, pagadero a la firma del contrato. Esta mención no constituye recibo de pago.','LIQUIDACIÓN DEL SALDO',...t.pagos.map((p,i)=>'Pago '+(i+1)+': '+mx(p.importe)+' M.N. '+(p.tipo==='fecha'?'A más tardar el '+fecha(p.fecha)+'.':p.condicion)), 'Las cantidades anteriores integran el precio total de la operación. Las demás condiciones del contrato permanecen vigentes.'];
+      }
+      async function axPdf(a){
+        await axVerify(a);if(!window.PDFLib)throw Error('No se cargó el generador de PDF. Revisa la conexión.');
+        const {PDFDocument,StandardFonts,rgb}=PDFLib,pdf=await PDFDocument.create();const normal=await pdf.embedFont(StandardFonts.Helvetica),bold=await pdf.embedFont(StandardFonts.HelveticaBold);let page,y;
+        const nueva=()=>{page=pdf.addPage([612,792]);page.drawRectangle({x:0,y:744,width:612,height:48,color:rgb(.12,.2,.49)});page.drawText('DG | DINAH GÓMEZ',{x:46,y:764,size:13,font:bold,color:rgb(1,1,1)});y=716;};
+        const line=(text,heading=false)=>{const f=heading?bold:normal,size=heading?11:9;const lines=envolver(text,f,size,520);if(y-lines.length*13<55)nueva();for(const l of lines){page.drawText(textoPdf(l),{x:46,y,size,font:f,color:rgb(.09,.18,.29)});y-=13;}y-=8;};nueva();
+        axText(a.terminos).forEach((p,i)=>line(p,i===0||['PRECIO TOTAL PACTADO','PAGO INICIAL','LIQUIDACIÓN DEL SALDO'].includes(p)));
+        if(!a.firmaCliente)line('PENDIENTE DE FIRMAS');
+        for(const [k,n]of [['firmaCliente','EL CONTRATANTE'],['firmaPrestadora','LA PRESTADORA']]){
+          const f=a[k];if(!f)continue;if(y<175)nueva();line(n,true);const im=await pdf.embedPng(f.png);page.drawImage(im,{x:46,y:y-55,width:220,height:55});y-=65;line(k==='firmaCliente'?a.terminos.contratante:'DINAH IRASEMA GÓMEZ MONTOYA');line('Fecha y hora declaradas por el dispositivo: '+horaLegible(f.payload.fechaHoraIso));line(geoLegible(f.payload.geolocalizacion));line('Cadena de firma SHA-256: '+f.cadena);line('UID Firebase: '+f.payload.uidFirebase);
+        }
+        line('VERIFICACIÓN DEL DOCUMENTO',true);line('Huella SHA-256 del contenido: '+a.hashTerminos);line('Huella del contrato original: '+a.terminos.hashContrato);line('Cadena del contrato: '+a.terminos.cadenaContrato);if(a.terminos.hashAnexoAnterior)line('Huella del anexo anterior: '+a.terminos.hashAnexoAnterior);
+        line('Las fechas de recepción en Firebase se conservan en la evidencia descargable; la cadena SHA-256 permite comprobar integridad y no constituye por sí sola un sello de tiempo certificado.');
+        pdf.getPages().forEach((p,i)=>p.drawText('Anexo '+a.terminos.numero+' | '+a.terminos.numeroContrato+' | '+(i+1)+' de '+pdf.getPageCount(),{x:46,y:30,size:8,font:normal}));
+        return new Blob([await pdf.save()],{type:'application/pdf'});
+      }
+      async function axPortal(contractId){
+        await axAdmin();const vref=doc(dbAdmin,'anexoVinculos',contractId);let v=await getDoc(vref);if(v.exists())return v.data().token;
+        const token=crypto.randomUUID().replaceAll('-','')+crypto.randomUUID().replaceAll('-','');
+        return runTransaction(dbAdmin,async tx=>{const old=await tx.get(vref);if(old.exists())return old.data().token;tx.set(vref,{token,contratoId:contractId,creadoEn:serverTimestamp()});return token;});
+      }
+      AX.historial=async function(id){await axAdmin();const s=await getDocs(collection(dbAdmin,'expedientesFirma',id,'anexos'));return s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.numero-b.numero);};
+      AX.nuevoBorrador=async function(c){await axAdmin();const h=await AX.historial(c.id);if(h.some(a=>a.estado!=='firmado_por_ambas_partes'))throw Error('Termina o carga el anexo pendiente antes de preparar otro.');return true;};
+      AX.publicar=async function(c,id){
+        await axAdmin();const original=await getDoc(doc(dbAdmin,'expedientesFirma',c.id));if(!original.exists())throw Error('No se encontró el contrato.');const e=original.data();
+        if(e.estado!=='firmado_por_ambas_partes'||!e.archivosFinales?.contratoFinal)throw Error('Completa las dos firmas del contrato antes de enviar su anexo.');
+        const token=await axPortal(c.id),pr=portalRef(dbAdmin,token);let ps=await getDoc(pr);
+        if(!ps.exists()){
+          const blob=await recuperarArchivo(dbAdmin,c.id,e.archivosFinales.contratoFinal);
+          const archivo=await guardarArchivo(dbAdmin,token,e.uid,'contrato_original',blob,'anexoPortales');
+          await runTransaction(dbAdmin,async tx=>{const x=await tx.get(pr);if(!x.exists())tx.set(pr,{contratoId:c.id,numeroContrato:e.contratante.numero||c.id,contratante:e.contratante.nombre,uid:e.uid,archivoContrato:archivo,hashContratoFinal:archivo.sha256,creadoEn:serverTimestamp()});});
+        }
+        const historial=await AX.historial(c.id);const anteriores=historial.filter(a=>a.id!==id);if(anteriores.some(a=>a.estado!=='firmado_por_ambas_partes'))throw Error('Hay otro anexo pendiente de firma.');
+        const anterior=anteriores.sort((a,b)=>b.numero-a.numero)[0];
+        const ar=axRef(c.id,id),snap=await getDoc(ar);if(!snap.exists())throw Error('Guarda primero el borrador.');const b=snap.data();
+        if(b.estado!=='borrador')return {token,id,enlace:axLink(token,id)};
+        const a={...b,hashContrato:e.archivosFinales.contratoFinal.sha256,sustituye:anterior?{id:anterior.id,numero:anterior.numero}:null,hashAnexoAnterior:anterior?.hashPdfFinal||null};
+        a.terminos=axTerms(a);a.terminos.parrafos=axText(a.terminos);a.hashTerminos=await sha256(canonico(a.terminos));
+        const publico={id,estado:'pendiente_firma_cliente',terminos:a.terminos,hashTerminos:a.hashTerminos,publicadoEn:serverTimestamp()};
+        await runTransaction(dbAdmin,async tx=>{const x=await tx.get(ar),pub=await tx.get(portalRef(dbAdmin,token,id));if(x.data().revision!==b.revision||x.data().estado!=='borrador')throw Error('El borrador cambió. Vuelve a cargarlo.');if(pub.exists())throw Error('Este anexo ya fue enviado.');if(anterior){const ant=await tx.get(axRef(c.id,anterior.id));if(ant.data()?.hashPdfFinal!==a.hashAnexoAnterior)throw Error('Cambió el anexo anterior. Actualiza el historial.');}tx.update(ar,{estado:'pendiente_firma_cliente',terminos:a.terminos,hashTerminos:a.hashTerminos,portalToken:token,publicadoEn:serverTimestamp()});tx.set(portalRef(dbAdmin,token,id),publico);});
+        return {token,id,enlace:axLink(token,id)};
+      };
+      function axLink(token,id){const url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('anexoPortal',token);if(id)url.searchParams.set('documento',id);return url.href;}
+      AX.enlace=async(c,id)=>{await axAdmin();const v=await getDoc(doc(dbAdmin,'anexoVinculos',c));if(!v.exists())throw Error('Envía primero un anexo para generar el acceso del cliente.');return axLink(v.data().token,id);};
+      AX.leerPortal=async function(token){await clienteAuth();const p=await getDoc(portalRef(db,token));if(!p.exists())throw Error('El enlace no existe o no está disponible.');const h=await getDocs(collection(db,'anexoPortales',token,'anexos'));const anexos=h.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.terminos.numero-b.terminos.numero);for(const a of anexos)await axVerify(a);return {portal:p.data(),anexos};};
+      AX.firmarCliente=async function(token,id,png){
+        await clienteAuth();const ar=portalRef(db,token,id),snap=await getDoc(ar);if(!snap.exists())throw Error('No se encontró el anexo.');const a={id,...snap.data()};await axVerify(a);if(a.estado!=='pendiente_firma_cliente')throw Error('Este anexo ya no está disponible para firmar.');
+        const firma=await axEvidence(a,png,'cliente');
+        await runTransaction(db,async tx=>{const x=await tx.get(ar);if(x.data()?.estado!=='pendiente_firma_cliente'||x.data().hashTerminos!==a.hashTerminos)throw Error('El anexo cambió o ya fue firmado. Actualiza la página.');tx.update(ar,{estado:'pendiente_firma_prestadora',firmaCliente:firma,recibidoClienteEn:serverTimestamp()});});return true;
+      };
+      AX.leerAdmin=async function(c,id){await axAdmin();const d=await getDoc(axRef(c,id));if(!d.exists())throw Error('No se encontró el anexo.');const a={id,...d.data()};if(a.portalToken){const p=await getDoc(portalRef(dbAdmin,a.portalToken,id));return {...a,...p.data()};}return a;};
+      AX.firmarPrestadora=async function(c,id,png){
+        await axAdmin();const a=await AX.leerAdmin(c,id);await axVerify(a);if(a.estado!=='pendiente_firma_prestadora')throw Error('Primero debe firmar el contratante.');
+        const firma=await axEvidence(a,png,'prestadora'),final={...a,estado:'firmado_por_ambas_partes',firmaPrestadora:firma},blob=await axPdf(final),hash=await sha256(blob);
+        const portal=(await getDoc(portalRef(dbAdmin,a.portalToken))).data();const archivo=await guardarArchivo(dbAdmin,a.portalToken,portal.uid,'anexo_final_'+id+'_'+hash.slice(0,12),blob,'anexoPortales');
+        await runTransaction(dbAdmin,async tx=>{const ref=portalRef(dbAdmin,a.portalToken,id),x=await tx.get(ref),priv=await tx.get(axRef(c,id));if(x.data()?.estado!=='pendiente_firma_prestadora'||x.data()?.firmaCliente?.cadena!==a.firmaCliente.cadena||priv.data()?.hashTerminos!==a.hashTerminos)throw Error('La firma ya fue procesada o el documento cambió. Actualiza el historial.');const update={estado:'firmado_por_ambas_partes',firmaCliente:a.firmaCliente,firmaPrestadora:firma,archivoFinal:archivo,hashPdfFinal:hash,finalizadoEn:serverTimestamp()};tx.update(ref,update);tx.update(axRef(c,id),update);});return true;
+      };
+      AX.descargar=async function(token,id){await clienteAuth();if(!id){const p=(await getDoc(portalRef(db,token))).data();return recuperarArchivo(db,token,p.archivoContrato,'anexoPortales');}const a={id,...(await getDoc(portalRef(db,token,id))).data()};await axVerify(a);if(a.archivoFinal)return recuperarArchivo(db,token,a.archivoFinal,'anexoPortales');return axPdf(a);};
+      AX.pdfAdmin=async function(c,id){const a=await AX.leerAdmin(c,id);if(!a.terminos)throw Error('El anexo sigue en borrador.');return a.archivoFinal?recuperarArchivo(dbAdmin,a.portalToken,a.archivoFinal,'anexoPortales'):axPdf(a);};
+      AX.evidencia=async function(token,id){await clienteAuth();const a={id,...(await getDoc(portalRef(db,token,id))).data()};await axVerify(a);return new Blob([JSON.stringify(a,null,2)],{type:'application/json'});};
+      AX.evidenciaAdmin=async function(c,id){const a=await AX.leerAdmin(c,id);await axVerify(a);return new Blob([JSON.stringify(a,null,2)],{type:'application/json'});};
+      AX.axText=axText; AX.verify=axVerify;
+      window.dispatchEvent(new Event('dgAnexosReady'));
+
       // Detecta fallo de inicialización del módulo sin mostrar una página que aparenta guardar.
       window.__dgInicializado = true;
     </script>
@@ -3125,5 +3286,72 @@
         }
       }, 15000);
     </script>
-  </body>
+  
+<script>
+(()=>{
+const $=id=>document.getElementById(id), fmt=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(n), esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num=v=>String(v).trim()===''?NaN:Number(String(v).replace(/[$,\s]/g,''));
+const campos=['Contrato','Cliente','Activo','Total','Numero','Fecha'];
+let pagos=[]; let contratoCargado=null, anexoId=null, borradorVersion=0, buscando=false;
+const fecha=v=>v?new Date(v+'T12:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'}):'';
+let anterior=[];
+function tab(anexo){if(anexo){anterior=['portalCliente','portalAdmin'].map(id=>[id,$(id)?.hidden]);for(const [id] of anterior)if($(id))$(id).hidden=true;}else for(const [id,h] of anterior)if($(id))$(id).hidden=h;$('dgAnexos').hidden=!anexo;$('dgTabContrato').setAttribute('aria-selected',String(!anexo));$('dgTabAnexo').setAttribute('aria-selected',String(anexo));}
+$('dgTabContrato').onclick=()=>tab(false);$('dgTabAnexo').onclick=()=>tab(true);
+function filas(){const box=$('axPagos');box.replaceChildren();pagos.forEach((p,i)=>{const d=document.createElement('div');d.className='dg-row';d.innerHTML=`<strong>Pago ${i+1}</strong><label>Importe (MXN)<input data-k="importe" inputmode="decimal" value="${esc(p.importe)}"></label><label>Vencimiento<select data-k="tipo"><option value="fecha">Fecha determinada</option><option value="condicion">Condición acordada</option></select></label><label class="ax-date">Fecha<input data-k="fecha" type="date" value="${esc(p.fecha)}"></label><label class="ax-condition">Condición<textarea data-k="condicion" rows="2" placeholder="Ej. Dentro de los 15 días naturales siguientes a la firma del contrato">${esc(p.condicion)}</textarea></label><button type="button" class="secundario ax-remove">Eliminar pago</button>`;d.querySelector('select').value=p.tipo;const show=()=>{d.querySelector('.ax-date').hidden=p.tipo!=='fecha';d.querySelector('.ax-condition').hidden=p.tipo!=='condicion';};show();d.querySelectorAll('[data-k]').forEach(e=>e.oninput=()=>{p[e.dataset.k]=e.value;show();render();});d.querySelector('.ax-remove').onclick=()=>{pagos.splice(i,1);filas();render();};box.append(d);});}
+function render(){const v=Object.fromEntries(campos.map(k=>[k,$('ax'+k).value.trim()]));const total=num(v.Total), inicial=Math.round(total*30)/100,saldo=Math.round((total-inicial)*100)/100;const suma=pagos.reduce((s,p)=>s+Math.round(num(p.importe)*100),0)/100;const valid=!!contratoCargado&&Number.isFinite(total)&&total>0&&pagos.length>0&&pagos.every(p=>num(p.importe)>0&&(p.tipo==='fecha'?(p.fecha&&p.fecha>=v.Fecha):p.condicion.trim()))&&Math.abs(suma-saldo)<.005&&v.Contrato&&v.Cliente&&v.Activo&&v.Fecha&&v.Numero;for(const [k,n]of [['T',total],['I',inicial],['S',saldo]])$('axV'+k).textContent=Number.isFinite(n)?fmt(n):'—';$('axValidacion').textContent=valid?'El calendario coincide con el saldo.':'Revisa los datos y vencimientos. Diferencia del calendario: '+(Number.isFinite(saldo-suma)?fmt(saldo-suma):'—');$('axGuardar').disabled=!valid;$('axImprimir').disabled=!valid;$('axAgregar').disabled=!contratoCargado;$('axRestaurar').disabled=!contratoCargado;
+if(!contratoCargado){$('axValidacion').textContent='Busca un contrato para preparar su anexo.';$('axDocumento').innerHTML='<h2>Anexo de pagos</h2><p>Busca el número de contrato para cargar la información de la operación.</p>';return {datos:v,pagos,valid:false};}
+$('axDocumento').innerHTML=`<strong style="color:#20357e">DG | DINAH GÓMEZ</strong><h2>ANEXO DE PAGOS ${esc(v.Numero)}</h2><p><strong>Contrato:</strong> ${esc(v.Contrato)}<br><strong>Fecha del contrato:</strong> ${esc(fecha(v.Fecha))}<br><strong>Contratante:</strong> ${esc(v.Cliente)}<br><strong>Prestadora:</strong> Dinah Irasema Gómez Montoya<br><strong>Activo:</strong> ${esc(v.Activo)}</p><p>El presente anexo forma parte integrante del contrato identificado anteriormente y establece las condiciones de pago de la operación.</p><h3>Precio total pactado</h3><p>${Number.isFinite(total)&&total>0?esc(fmt(total)):'Por cargar'} M.N.</p><h3>Pago inicial</h3><p>${esc(fmt(inicial))} M.N., equivalente al 30 % del precio total, pagadero a la firma del contrato.</p><h3>Liquidación del saldo</h3><table><thead><tr><th>Pago</th><th>Importe</th><th>Fecha o condición</th></tr></thead><tbody>${pagos.map((p,i)=>`<tr><td>${i+1}</td><td>${esc(fmt(num(p.importe)))}</td><td>${esc(p.tipo==='fecha'?'A más tardar el '+fecha(p.fecha):p.condicion)}</td></tr>`).join('')}</tbody></table><p>Las cantidades anteriores integran el precio total de la operación. Las demás condiciones del contrato permanecen vigentes.</p><div class="dg-signatures"><div><strong>LA PRESTADORA</strong><br>Dinah Irasema Gómez Montoya</div><div><strong>EL CONTRATANTE</strong><br>${esc(v.Cliente)}</div></div><p class="dg-muted" style="margin-top:35px">BORRADOR PARA REVISIÓN · SIN FIRMAS</p>`;return {datos:v,pagos,valid};}
+campos.filter(k=>k!=='Contrato').forEach(k=>$('ax'+k).oninput=render); $('axContrato').oninput=()=>{contratoCargado=null;anexoId=null;borradorVersion=0;pagos=[];for(const k of campos.filter(k=>k!=='Contrato'))$('ax'+k).value='';filas();render();$('axBusquedaEstado').textContent='Busca el contrato para cargar sus datos.';};
+$('axAgregar').onclick=()=>{pagos.push({importe:'',tipo:'fecha',fecha:'',condicion:''});filas();render();};
+
+function api(){if(!window.dgAnexosFirebase)throw Error('No se ha cargado Firebase. Abre el archivo desde el enlace HTTPS publicado y revisa la conexión.');return window.dgAnexosFirebase;}
+function aviso(e){return String(e?.code||'').includes('permission-denied')?'Firebase no autorizó esta operación. Revisa el acceso de Dinah y los permisos de la subcolección anexos.':e.message||String(e);}
+function cargarDatos(x){contratoCargado=x;anexoId=null;borradorVersion=0;const d=x.contratante; $('axContrato').value=x.id; $('axCliente').value=d.nombre; $('axActivo').value=d.direccionActivo; $('axTotal').value=d.precio; $('axNumero').value='01'; $('axFecha').value=x.fechaContrato; $('axSource').textContent='Contrato recuperado de Firebase · '+(x.estado==='firmado_por_ambas_partes'?'Firmado por ambas partes':'Firma del cliente registrada'); const t=num(d.precio);pagos=[{importe:Math.round(t*100-Math.round(t*30))/100,tipo:'fecha',fecha:'',condicion:''}];filas();render();}
+$('axBuscar').onclick=async()=>{if(buscando)return;buscando=true;$('axBuscar').disabled=true;const numero=$('axContrato').value.trim();contratoCargado=null;anexoId=null;borradorVersion=0;pagos=[];filas();render();$('axBusquedaEstado').textContent='Buscando contrato en Firebase…';try{if(!numero)throw Error('Ingresa el número de contrato.');const x=await api().buscar(numero);cargarDatos(x);$('axBusquedaEstado').textContent='Contrato cargado. Define las fechas o condiciones del saldo.';}catch(e){for(const k of campos.filter(k=>k!=='Contrato'))$('ax'+k).value='';render();$('axBusquedaEstado').textContent=aviso(e);}finally{buscando=false;$('axBuscar').disabled=false;}};
+$('axContrato').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('axBuscar').click();}};
+$('axAcceso').onclick=()=>{tab(false);$('portalCliente').hidden=true;$('portalAdmin').hidden=false;$('loginAdmin').hidden=false;$('emailAdmin').focus();};
+$('axGuardar').onclick=async()=>{const x=render();if(!x.valid)return;$('axGuardar').disabled=true;document.querySelector('#dgAnexos .dg-editor').inert=true;try{const r=await api().guardar(contratoCargado,{anexoId,revision:borradorVersion,pagos:x.pagos});anexoId=r.id;borradorVersion=r.revision;$('axNumero').value=String(r.numero).padStart(2,'0');$('axMensaje').textContent='Anexo '+$('axNumero').value+' guardado en Firebase como borrador para revisión.';}catch(e){$('axMensaje').textContent=aviso(e);}finally{document.querySelector('#dgAnexos .dg-editor').inert=false;render();}};
+$('axRestaurar').onclick=async()=>{if(!contratoCargado)return;$('axRestaurar').disabled=true;try{const r=await api().cargarBorrador(contratoCargado.id);if(!r)throw Error('Este contrato no tiene un borrador de anexo.');anexoId=r.id;borradorVersion=r.revision;pagos=r.pagos.map(p=>({...p}));$('axNumero').value=String(r.numero).padStart(2,'0');filas();render();$('axMensaje').textContent='Borrador '+$('axNumero').value+' recuperado de Firebase.';}catch(e){$('axMensaje').textContent=aviso(e);}finally{render();}};
+$('axImprimir').onclick=()=>{if(render().valid)window.print();};$('axVistaCliente').onclick=()=>{const e=document.querySelector('#dgAnexos .dg-editor');e.hidden=!e.hidden;document.querySelector('#dgAnexos .dg-layout').style.gridTemplateColumns=e.hidden?'1fr':'';$('axVistaCliente').textContent=e.hidden?'Volver a edición':'Ver como comprador';};
+filas();render();
+})();
+</script>
+
+<script>
+(()=>{
+const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));let seleccionado=null,contrato=null,pngCliente=null,pngAdmin=null,busy=false,portalToken=new URLSearchParams(location.search).get('anexoPortal'),portalData=null;
+const api=()=>{if(!window.dgAnexosFirebase?.publicar)throw Error('No se ha cargado Firebase. Revisa la conexión y abre el archivo publicado en HTTPS.');return window.dgAnexosFirebase;};
+const status=(id,s)=>$(id).textContent=s;
+const error=e=>String(e.code||'').includes('permission-denied')?'Firebase denegó el acceso. Integra las reglas de anexos incluidas con este archivo.':e.message||String(e);
+const descargar=(blob,nombre)=>{const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=nombre;a.click();setTimeout(()=>URL.revokeObjectURL(u),30000);};
+function firma(id){const c=$(id),ctx=c.getContext('2d');let down=false,hay=false;c.style.touchAction='none';ctx.lineWidth=3;ctx.lineCap='round';function punto(e){const r=c.getBoundingClientRect();return {x:(e.clientX-r.left)*c.width/r.width,y:(e.clientY-r.top)*c.height/r.height};}c.onpointerdown=e=>{e.preventDefault();down=true;hay=true;c.setPointerCapture(e.pointerId);const p=punto(e);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x+.1,p.y+.1);ctx.stroke();};c.onpointermove=e=>{if(!down)return;const p=punto(e);ctx.lineTo(p.x,p.y);ctx.stroke();};c.onpointerup=c.onpointercancel=()=>down=false;return {png:()=>hay?c.toDataURL('image/png'):null,clear:()=>{ctx.clearRect(0,0,c.width,c.height);hay=false;}};}
+const fc=firma('afFirmaCliente'),fa=firma('afFirmaDinah');$('afBorrarCliente').onclick=()=>fc.clear();$('afBorrarDinah').onclick=()=>fa.clear();
+async function action(fn,output){if(busy)return;busy=true;document.querySelectorAll('.af-action').forEach(b=>b.disabled=true);try{await fn();}catch(e){status(output,error(e));}finally{busy=false;document.querySelectorAll('.af-action').forEach(b=>b.disabled=false);}}
+const nombreEstado=s=>({borrador:'Borrador editable',pendiente_firma_cliente:'Pendiente de firma del cliente',pendiente_firma_prestadora:'Pendiente de firma de Dinah',firmado_por_ambas_partes:'Firmado por ambas partes'}[s]||s);
+function texto(a){const f=a.firmaCliente,p=a.firmaPrestadora;return api().axText(a.terminos).map((t,i)=>i===0?'<h2>'+esc(t)+'</h2>':'<p>'+esc(t)+'</p>').join('')+'<h3>Firmas y evidencias</h3>'+[['Contratante',f],['Prestadora',p]].map(([n,x])=>'<p><strong>'+n+'</strong><br>'+(x?'<img alt="Firma '+n+'" style="max-width:230px;max-height:85px" src="'+esc(x.png)+'"><br>'+esc(x.payload.fechaHoraIso)+'<br><small style="overflow-wrap:anywhere">Cadena SHA-256: '+esc(x.cadena)+'</small>':'Pendiente de firma')+'</p>').join('')+'<p style="overflow-wrap:anywhere"><small>Huella del contenido: '+esc(a.hashTerminos)+'</small></p>';}
+async function historial(){const n=$('axContrato').value.trim();if(!n)throw Error('Busca primero el contrato.');contrato=await api().buscar(n);const list=await api().historial(contrato.id);$('afHistorial').replaceChildren();for(const priv of list){const a=priv.portalToken?await api().leerAdmin(contrato.id,priv.id):priv;const reemplazado=list.some(b=>b.estado==='firmado_por_ambas_partes'&&b.terminos?.sustituye?.id===a.id);const row=document.createElement('div');row.className='dg-row';row.innerHTML='<strong>Anexo '+String(a.numero||a.terminos.numero).padStart(2,'0')+'</strong><p>'+esc(reemplazado?'Reemplazado · conservado':nombreEstado(a.estado))+'</p><button class="secundario" type="button">Abrir</button>';row.querySelector('button').onclick=()=>action(()=>abrir(a.id),'afEstadoAdmin');$('afHistorial').append(row);}status('afEstadoAdmin',list.length?'Selecciona un anexo para revisarlo.':'Aún no hay anexos. Prepara el calendario y guarda el borrador.');}
+async function abrir(id){seleccionado=await api().leerAdmin(contrato.id,id);$('afSeleccionado').textContent='Anexo '+String(seleccionado.numero||seleccionado.terminos.numero).padStart(2,'0')+' · '+nombreEstado(seleccionado.estado);$('afFirmaAdminBox').hidden=seleccionado.estado!=='pendiente_firma_prestadora';$('afEnviar').hidden=seleccionado.estado!=='borrador';$('afLinkBox').hidden=!seleccionado.portalToken;$('afDescargarAdmin').hidden=!seleccionado.terminos;$('afEvidenciaAdmin').hidden=!seleccionado.terminos;$('afTextoAdmin').hidden=!seleccionado.terminos;fa.clear();$('afAceptoDinah').checked=false;
+if(seleccionado.terminos){await api().verify(seleccionado);$('afTextoAdmin').innerHTML=texto(seleccionado);$('afAvisoAnterior').textContent=seleccionado.terminos.sustituye?'Este anexo sustituirá el calendario del Anexo '+seleccionado.terminos.sustituye.numero+' cuando ambas partes lo firmen.':'';}
+if(seleccionado.portalToken)$('afLink').value=await api().enlace(contrato.id,id);}
+$('afActualizar').onclick=()=>action(historial,'afEstadoAdmin');
+$('afNuevo').onclick=()=>action(async()=>{const n=$('axContrato').value.trim();contrato=await api().buscar(n);await api().nuevoBorrador(contrato);$('axContrato').dispatchEvent(new Event('input'));$('axContrato').value=n;$('axBuscar').click();seleccionado=null;$('afSeleccionado').textContent='Nuevo borrador';$('afEnviar').hidden=true;status('afEstadoAdmin','Prepara el nuevo calendario y guarda. El número se asignará automáticamente.');},'afEstadoAdmin');
+$('afEnviar').onclick=()=>action(async()=>{if(!seleccionado||!contrato)throw Error('Selecciona un borrador del historial.');const r=await api().publicar(contrato,seleccionado.id);$('afLink').value=r.enlace;$('afLinkBox').hidden=false;await abrir(r.id);status('afEstadoAdmin','Anexo cerrado para edición y listo para firma del cliente. Copia y comparte su enlace.');},'afEstadoAdmin');
+$('afCopiar').onclick=()=>action(async()=>{try{await navigator.clipboard.writeText($('afLink').value);status('afEstadoAdmin','Enlace copiado.');}catch{$('afLink').select();status('afEstadoAdmin','Selecciona y copia el enlace mostrado.');}},'afEstadoAdmin');
+$('afFirmarDinah').onclick=()=>action(async()=>{if(!$('afAceptoDinah').checked)throw Error('Confirma la revisión del anexo.');const png=fa.png();if(!png)throw Error('Dibuja tu firma.');status('afEstadoAdmin','Solicitando ubicación, generando PDF y guardando las cadenas…');await api().firmarPrestadora(contrato.id,seleccionado.id,png);await abrir(seleccionado.id);await historial();status('afEstadoAdmin','Anexo firmado por ambas partes. PDF y cadenas conservados.');},'afEstadoAdmin');
+$('afDescargarAdmin').onclick=()=>action(async()=>descargar(await api().pdfAdmin(contrato.id,seleccionado.id),'Anexo_'+seleccionado.numero+'_'+contrato.id+'.pdf'),'afEstadoAdmin');
+$('afEvidenciaAdmin').onclick=()=>action(async()=>descargar(await api().evidenciaAdmin(contrato.id,seleccionado.id),'Evidencia_'+seleccionado.id+'.json'),'afEstadoAdmin');
+function modoPortal(){for(const id of ['portalCliente','portalAdmin','dgAnexos'])$(id).hidden=true;document.querySelector('.dg-tabs').hidden=true;$('afPortalCliente').hidden=false;$('abrirAdmin').hidden=true;$('volverCliente').hidden=true;}
+async function cargarPortal(){modoPortal();status('afEstadoCliente','Cargando y verificando documentos…');portalData=await api().leerPortal(portalToken);$('afTituloContrato').textContent=portalData.portal.numeroContrato+' · '+portalData.portal.contratante;const sel=$('afListaCliente');sel.replaceChildren();for(const a of portalData.anexos){const reemplazado=portalData.anexos.some(b=>b.estado==='firmado_por_ambas_partes'&&b.terminos.sustituye?.id===a.id);sel.append(new Option('Anexo '+String(a.terminos.numero).padStart(2,'0')+' · '+(reemplazado?'Reemplazado · conservado':nombreEstado(a.estado)),a.id));}const wanted=new URLSearchParams(location.search).get('documento');if(wanted&&portalData.anexos.some(a=>a.id===wanted))sel.value=wanted;else if(sel.options.length)sel.selectedIndex=sel.options.length-1;await verCliente();status('afEstadoCliente','Documentos recuperados. Puedes consultar el contrato y todo el historial de anexos.');}
+async function verCliente(){const a=portalData.anexos.find(x=>x.id===$('afListaCliente').value);$('afFirmaClienteBox').hidden=!a||a.estado!=='pendiente_firma_cliente';$('afTextoCliente').innerHTML=a?texto(a):'<p>No hay anexos publicados.</p>';$('afDescargarCliente').disabled=!a;$('afEvidenciaCliente').disabled=!a;fc.clear();$('afAceptoCliente').checked=false;}
+$('afListaCliente').onchange=()=>action(verCliente,'afEstadoCliente');
+$('afActualizarCliente').onclick=()=>action(cargarPortal,'afEstadoCliente');
+$('afContratoOriginal').onclick=()=>action(async()=>descargar(await api().descargar(portalToken),'Contrato_'+portalData.portal.numeroContrato+'.pdf'),'afEstadoCliente');
+$('afDescargarCliente').onclick=()=>action(async()=>descargar(await api().descargar(portalToken,$('afListaCliente').value),'Anexo_'+$('afListaCliente').value+'.pdf'),'afEstadoCliente');
+$('afEvidenciaCliente').onclick=()=>action(async()=>descargar(await api().evidencia(portalToken,$('afListaCliente').value),'Evidencia_'+$('afListaCliente').value+'.json'),'afEstadoCliente');
+$('afFirmarCliente').onclick=()=>action(async()=>{if(!$('afAceptoCliente').checked)throw Error('Lee el anexo y marca tu aceptación.');const png=fc.png();if(!png)throw Error('Dibuja tu firma.');status('afEstadoCliente','Solicitando ubicación y guardando tu firma y su cadena…');await api().firmarCliente(portalToken,$('afListaCliente').value,png);await cargarPortal();status('afEstadoCliente','Firma recibida. El anexo está pendiente de firma de la prestadora.');},'afEstadoCliente');
+if(portalToken){setTimeout(()=>{if(!window.dgAnexosFirebase?.publicar)status('afEstadoCliente','No se pudo cargar Firebase. Revisa la conexión y abre el enlace HTTPS publicado.');},15000);modoPortal();if(window.dgAnexosFirebase?.publicar)action(cargarPortal,'afEstadoCliente');else window.addEventListener('dgAnexosReady',()=>action(cargarPortal,'afEstadoCliente'),{once:true});}
+})();
+</script>
+
+</body>
 </html>
